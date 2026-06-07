@@ -3004,23 +3004,69 @@
       }
 
       .map {
-        width: calc(100% - 32px);
-        margin-top: 42px;
+        width: calc(100% - 28px);
+        margin-top: 36px;
+        border: 1px solid #ededed;
+        border-radius: 8px;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, .08);
       }
 
       .map-visual {
-        height: 190px;
+        height: 172px;
       }
 
       .map-card {
-        grid-template-columns: 46px 1fr;
-        gap: 14px;
-        padding: 20px;
+        grid-template-columns: 48px minmax(0, 1fr);
+        align-items: start;
+        gap: 12px;
+        min-height: 0;
+        padding: 18px 16px 16px;
+        background: linear-gradient(180deg, #fff 0%, #fffafa 100%);
+      }
+
+      .map-card-icon {
+        width: 48px;
+        height: 48px;
+        border: 1px solid #ffd7db;
+        border-radius: 8px;
+      }
+
+      .map-card-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .map-card strong {
+        margin-bottom: 7px;
+        font-size: 13px;
+        line-height: 1.28;
+      }
+
+      .map-card p {
+        color: #222;
+        font-size: 12px;
+        line-height: 1.55;
       }
 
       .map-directions {
         grid-column: 1 / -1;
         width: 100%;
+        min-height: 48px;
+        margin-top: 6px;
+        padding: 0 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        border-color: #ff9fa7;
+        border-radius: 3px;
+        background: #fff;
+        font-size: 11px;
+        letter-spacing: 0;
+      }
+
+      .map-directions::after {
+        margin-left: 14px;
+        font-size: 14px;
       }
     }
   </style>
@@ -3421,7 +3467,7 @@
             <strong>ABE Plaster Ceiling & Gypsum Partition</strong>
             <p>PT46046D, JALAN BUKIT CERAKAH, BUKIT KAPAR,<br />42200 KAPAR, Selangor, Malaysia.</p>
           </div>
-          <a class="map-directions" href="https://www.google.com/maps/search/?api=1&query=No.%2025%2C%20Jalan%20Industri%203%2F6%2C%20Taman%20Perindustrian%20Rawang%2C%2048000%20Rawang%2C%20Selangor%2C%20Malaysia" target="_blank" rel="noopener">Get Directions</a>
+          <a class="map-directions" href="https://www.google.com/maps/search/?api=1&query=PT46046D%2C%20JALAN%20BUKIT%20CERAKAH%2C%20BUKIT%20KAPAR%2C%2042200%20KAPAR%2C%20Selangor%2C%20Malaysia" target="_blank" rel="noopener">Get Directions</a>
         </div>
       </div>
     </section>
