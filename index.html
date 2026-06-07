@@ -383,14 +383,6 @@
       object-position: center;
     }
 
-    @media (min-width: 1051px) {
-      .hero,
-      .hero-shell,
-      .hero-copy {
-        background: #010101;
-      }
-    }
-
     .eyebrow {
       color: var(--red);
       font-size: 13px;
@@ -510,6 +502,21 @@
       color: #fff;
       border-top: 1px solid #202020;
       border-bottom: 1px solid #202020;
+    }
+
+    @media (min-width: 1051px) {
+      .hero,
+      .hero-shell,
+      .hero-copy,
+      .hero-stats {
+        background: #010101;
+      }
+
+      .hero,
+      .hero-stats {
+        border-top: 0;
+        border-bottom: 0;
+      }
     }
 
     .hero-stats-grid {
@@ -793,6 +800,14 @@
       background:
         linear-gradient(115deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.91) 62%, rgba(0, 0, 0, 0.56) 100%),
         radial-gradient(circle at 92% 50%, rgba(255, 255, 255, 0.07), transparent 38%);
+    }
+
+    @media (min-width: 1051px) {
+      .about-hero,
+      .about-hero-grid,
+      .about-hero-copy {
+        background: #010101;
+      }
     }
 
     .breadcrumb {
@@ -3035,7 +3050,7 @@
       </div>
       <div class="actions">
         <a class="btn btn-red" href="#contact">Get Free Quotation</a>
-        <a class="whatsapp" href="https://wa.me/60123456789" aria-label="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z"/></svg></a>
+        <a class="whatsapp" href="https://wa.me/60133008130" aria-label="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z"/></svg></a>
         <button class="hamburger" type="button" aria-label="Open navigation menu" aria-controls="mobileDrawer" aria-expanded="false"><span></span></button>
       </div>
     </nav>
@@ -3214,11 +3229,11 @@
               <h3>Categories</h3>
               <ul class="category-list">
                 <li class="active"><i data-lucide="boxes"></i><span>All Products</span><strong>11</strong></li>
-                <li><i data-lucide="package"></i><span>Insulation</span><strong>1</strong></li>
+                <li><i data-lucide="package"></i><span>Stopping</span><strong>1</strong></li>
                 <li><i data-lucide="door-open"></i><span>Doors</span><strong>2</strong></li>
                 <li><i data-lucide="box"></i><span>Gypsum & Boards</span><strong>2</strong></li>
                 <li><i data-lucide="wrench"></i><span>Accessories</span><strong>2</strong></li>
-                <li><i data-lucide="columns-3"></i><span>Metal Framing</span><strong>1</strong></li>
+                <li><i data-lucide="columns-3"></i><span>Metal Partition</span><strong>1</strong></li>
               </ul>
             </div>
           </aside>
