@@ -632,7 +632,6 @@
     .service-mini,
     .product,
     .project,
-    .testimonial,
     .process-step,
     .contact-card,
     .field {
@@ -696,8 +695,7 @@
 
     .service-mini p,
     .product p,
-    .service-card p,
-    .testimonial p {
+    .service-card p {
       color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
@@ -2072,63 +2070,6 @@
       color: #25d366;
     }
 
-    .testimonials {
-      background: #fff;
-    }
-
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .testimonial {
-      padding: 30px;
-    }
-
-    .quote {
-      color: var(--red);
-      font-size: 42px;
-      line-height: .7;
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
-
-    .person {
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      overflow: hidden;
-    }
-
-    .person strong {
-      display: block;
-      font-size: 13px;
-    }
-
-    .person span {
-      color: #777;
-      font-size: 12px;
-    }
-
-    .logos {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 22px;
-      padding-top: 38px;
-      color: #9a9a9a;
-      text-align: center;
-      font-weight: 900;
-      font-size: 13px;
-    }
-
     .contact {
       background: #f7f7f7;
       padding-bottom: 0;
@@ -2727,7 +2668,6 @@
       .services-layout,
       .contact-layout,
       .shop-grid,
-      .testimonial-grid,
       .project-grid,
       .service-cards,
       .footer-grid {
@@ -3083,7 +3023,6 @@
         <a href="#services">Services</a>
         <a href="#shop">Products</a>
         <a href="#projects">Projects</a>
-        <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="actions">
@@ -3105,7 +3044,6 @@
       <a href="#services">Services</a>
       <a href="#shop">Products</a>
       <a href="#projects">Projects</a>
-      <a href="#testimonials">Testimonials</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="drawer-actions">
@@ -3393,32 +3331,6 @@
       </div>
     </section>
 
-    <section class="testimonials" id="testimonials">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Testimonials</div>
-            <h2>What Our Clients Say</h2>
-            <p>We value our clients and always deliver the best results.</p>
-          </div>
-        </div>
-        <div class="testimonial-grid">
-          <article class="testimonial"><div class="quote">&ldquo;</div><p>We did an amazing job on our office renovation. The ceiling and partition work is excellent and the team is very professional.</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Ahmad Faizal" /></div><div><strong>Ahmad Faizal</strong><span>Project Manager</span></div></div></article>
-          <article class="testimonial"><div class="quote">&ldquo;</div><p>Very satisfied with their plaster ceiling work. Smooth finish and completed on time. Highly recommended.</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Nur Hidayah" /></div><div><strong>Nur Hidayah</strong><span>Home Owner</span></div></div></article>
-          <article class="testimonial"><div class="quote">&ldquo;</div><p>High quality materials and skilled workers. The result is beyond our expectations. We will use their service again.</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Daniel Lim" /></div><div><strong>Daniel Lim</strong><span>Retailing Shop</span></div></div></article>
-        </div>
-      </div>
-    </section>
-
-    <div class="stats">
-      <div class="stats-grid">
-        <div class="stat"><strong>500+</strong><span>Projects Completed</span></div>
-        <div class="stat"><strong>100%</strong><span>Client Satisfaction</span></div>
-        <div class="stat"><strong>10+</strong><span>Years Experience</span></div>
-        <div class="stat"><strong>4.9</strong><span>Average Rating</span></div>
-      </div>
-    </div>
-
     <section class="contact" id="contact">
       <div class="wrap">
         <div class="contact-layout">
@@ -3489,7 +3401,7 @@
           </div>
         </div>
         <div><h3>Services</h3><ul><li>Plaster Ceiling</li><li>Gypsum Ceiling</li><li>Partition Wall</li><li>Office Partition</li><li>Commercial Ceiling</li><li>Renovation Work</li></ul></div>
-        <div><h3>Quick Links</h3><ul><li>About Us</li><li>Projects</li><li>Products</li><li>Process</li><li>Testimonials</li><li>Contact</li></ul></div>
+        <div><h3>Quick Links</h3><ul><li>About Us</li><li>Projects</li><li>Products</li><li>Process</li><li>Contact</li></ul></div>
         <div><h3>Products</h3><ul><li>Ceiling Materials</li><li>Partition & Frame</li><li>Doors & Accessories</li><li>Insulation</li><li>Tools & Others</li></ul></div>
         <div><h3>Contact Info</h3><ul><li>+6013 300 8130</li><li>info@aceinterior.com.my</li><li>42200 Kapar, Selangor</li></ul></div>
       </div>
@@ -3526,7 +3438,7 @@
     window.navScriptStarted = true;
 
     var navMenuLinks = document.querySelectorAll('.links a, .mobile-links a');
-    var navSectionIds = ['home', 'products', 'about', 'services', 'shop', 'projects', 'testimonials', 'contact'];
+    var navSectionIds = ['home', 'products', 'about', 'services', 'shop', 'projects', 'contact'];
 
     function setActiveNav(id) {
       for (var i = 0; i < navMenuLinks.length; i += 1) {
