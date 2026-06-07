@@ -1456,18 +1456,37 @@
     }
 
     .category-list li {
+      margin: 0;
+    }
+
+    .category-list button {
+      width: 100%;
       min-height: 42px;
       display: grid;
       grid-template-columns: 24px 1fr auto;
       align-items: center;
       gap: 10px;
+      border: 0;
       border-radius: 4px;
       padding: 0 10px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
       font-weight: 600;
+      text-align: left;
+      cursor: pointer;
     }
 
-    .category-list li.active {
+    .category-list button.active {
       background: var(--red);
+      color: #fff;
+    }
+
+    .category-list button:hover {
+      color: var(--red);
+    }
+
+    .category-list button.active:hover {
       color: #fff;
     }
 
@@ -3228,27 +3247,28 @@
             <div class="filter-card">
               <h3>Categories</h3>
               <ul class="category-list">
-                <li class="active"><i data-lucide="boxes"></i><span>All Products</span><strong>11</strong></li>
-                <li><i data-lucide="package"></i><span>Stopping</span><strong>1</strong></li>
-                <li><i data-lucide="door-open"></i><span>Doors</span><strong>2</strong></li>
-                <li><i data-lucide="box"></i><span>Gypsum & Boards</span><strong>2</strong></li>
-                <li><i data-lucide="wrench"></i><span>Accessories</span><strong>2</strong></li>
-                <li><i data-lucide="columns-3"></i><span>Metal Partition</span><strong>1</strong></li>
+                <li><button class="category-filter active" type="button" data-category="all"><i data-lucide="boxes"></i><span>All Products</span><strong>11</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="insulation"><i data-lucide="package"></i><span>Insulation</span><strong>1</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="stopping"><i data-lucide="layers"></i><span>Stopping</span><strong>1</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="doors"><i data-lucide="door-open"></i><span>Doors</span><strong>3</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="gypsum"><i data-lucide="box"></i><span>Gypsum & Boards</span><strong>1</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="accessories"><i data-lucide="wrench"></i><span>Accessories</span><strong>3</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="metal"><i data-lucide="columns-3"></i><span>Metal Partition</span><strong>2</strong></button></li>
               </ul>
             </div>
           </aside>
           <div class="catalog">
-            <article class="product"><div class="product-img"><img src="rockwool.png" alt="Rockwool" /></div><div class="product-body"><h3>Rockwool</h3><p>Fire and sound insulation.</p><span class="price">MYR 98.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="aluminiumglassdoor.png" alt="Aluminium glass door" /></div><div class="product-body"><h3>Aluminium Glass Door</h3><p>High quality aluminium system.</p><span class="price">MYR 480.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="flexistopping.png" alt="Flexi and S88 stopping" /></div><div class="product-body"><h3>Flexi & S88 Stopping</h3><p>High quality stopping material for smooth finishing.</p><span class="price">MYR 110.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="gypsumboard.png" alt="Gypsum board" /></div><div class="product-body"><h3>Gypsum Board</h3><p>Available sizes: 4x8 and 4x6. Thickness: 9mm.</p><span class="price">MYR 21.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="asgjointtape.png" alt="ASG joint tape" /></div><div class="product-body"><h3>ASG Joint Tape</h3><p>High quality joint tape for smooth and strong seams.</p><span class="price">MYR 6.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="plywooddoor.png" alt="Plywood door" /></div><div class="product-body"><h3>Plywood Door</h3><p>Available with glass and without glass options.</p><span class="price">MYR 65.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="asgscrew.png" alt="ASG dry wall screw" /></div><div class="product-body"><h3>ASG Dry Wall Screw</h3><p>Durable screw for drywall and ceiling installation.</p><span class="price">MYR 12.50</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="metalstud.png" alt="Metal stud" /></div><div class="product-body"><h3>Metal Stud</h3><p>Metal stud framing.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="besisiling.png" alt="Besi siling" /></div><div class="product-body"><h3>Besi Siling</h3><p>Ceiling metal framing material for installation works.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="getahpintu.png" alt="Getah pintu" /></div><div class="product-body"><h3>Getah Pintu</h3><p>Can be used for door and glass applications.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product"><div class="product-img"><img src="doorjamb.png" alt="Aluminium door jamb" /></div><div class="product-body"><h3>Aluminium Door Jamb</h3><p>Durable aluminium jamb for door installation.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="insulation"><div class="product-img"><img src="rockwool.png" alt="Rockwool" /></div><div class="product-body"><h3>Rockwool</h3><p>Fire and sound insulation.</p><span class="price">MYR 98.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="doors"><div class="product-img"><img src="aluminiumglassdoor.png" alt="Aluminium glass door" /></div><div class="product-body"><h3>Aluminium Glass Door</h3><p>High quality aluminium system.</p><span class="price">MYR 480.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="stopping"><div class="product-img"><img src="flexistopping.png" alt="Flexi and S88 stopping" /></div><div class="product-body"><h3>Flexi & S88 Stopping</h3><p>High quality stopping material for smooth finishing.</p><span class="price">MYR 110.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="gypsum"><div class="product-img"><img src="gypsumboard.png" alt="Gypsum board" /></div><div class="product-body"><h3>Gypsum Board</h3><p>Available sizes: 4x8 and 4x6. Thickness: 9mm.</p><span class="price">MYR 21.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="asgjointtape.png" alt="ASG joint tape" /></div><div class="product-body"><h3>ASG Joint Tape</h3><p>High quality joint tape for smooth and strong seams.</p><span class="price">MYR 6.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="doors"><div class="product-img"><img src="plywooddoor.png" alt="Plywood door" /></div><div class="product-body"><h3>Plywood Door</h3><p>Available with glass and without glass options.</p><span class="price">MYR 65.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="asgscrew.png" alt="ASG dry wall screw" /></div><div class="product-body"><h3>ASG Dry Wall Screw</h3><p>Durable screw for drywall and ceiling installation.</p><span class="price">MYR 12.50</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="metal"><div class="product-img"><img src="metalstud.png" alt="Metal stud" /></div><div class="product-body"><h3>Metal Stud</h3><p>Metal stud framing.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="metal"><div class="product-img"><img src="besisiling.png" alt="Besi siling" /></div><div class="product-body"><h3>Besi Siling</h3><p>Ceiling metal framing material for installation works.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="getahpintu.png" alt="Getah pintu" /></div><div class="product-body"><h3>Getah Pintu</h3><p>Can be used for door and glass applications.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="doors"><div class="product-img"><img src="doorjamb.png" alt="Aluminium door jamb" /></div><div class="product-body"><h3>Aluminium Door Jamb</h3><p>Durable aluminium jamb for door installation.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
           </div>
         </div>
         <div class="bulk-cta">
@@ -3553,6 +3573,48 @@
     var inquirySummary = document.getElementById('inquirySummary');
     var inquiryWhatsapp = document.getElementById('inquiryWhatsapp');
     var inquiryButtons = document.querySelectorAll('.shop .catalog .product .btn');
+    var productCards = document.querySelectorAll('.shop .catalog .product');
+    var categoryButtons = document.querySelectorAll('.category-filter');
+    var productCount = document.querySelector('.product-count');
+
+    function applyProductCategory(category) {
+      var visibleCount = 0;
+      var totalCount = productCards.length;
+
+      for (var productIndex = 0; productIndex < productCards.length; productIndex += 1) {
+        var product = productCards[productIndex];
+        var productCategory = product.getAttribute('data-category');
+        var shouldShow = category === 'all' || productCategory === category;
+        product.style.display = shouldShow ? '' : 'none';
+
+        if (shouldShow) {
+          visibleCount += 1;
+        }
+      }
+
+      for (var categoryIndex = 0; categoryIndex < categoryButtons.length; categoryIndex += 1) {
+        var button = categoryButtons[categoryIndex];
+        if (button.getAttribute('data-category') === category) {
+          button.classList.add('active');
+        } else {
+          button.classList.remove('active');
+        }
+      }
+
+      if (productCount) {
+        if (category === 'all') {
+          productCount.innerHTML = 'Showing 1-' + totalCount + ' of ' + totalCount + ' products';
+        } else {
+          productCount.innerHTML = 'Showing ' + visibleCount + ' of ' + totalCount + ' products';
+        }
+      }
+    }
+
+    for (var categoryButtonIndex = 0; categoryButtonIndex < categoryButtons.length; categoryButtonIndex += 1) {
+      categoryButtons[categoryButtonIndex].onclick = function() {
+        applyProductCategory(this.getAttribute('data-category') || 'all');
+      };
+    }
 
     function updateInquiryFloat() {
       var count = inquiryProducts.length;
