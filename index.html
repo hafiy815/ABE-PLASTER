@@ -1,0 +1,3615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABE Plaster & Gypsum Partition</title>
+  <link rel="icon" type="image/png" href="logobrowser.png" />
+  <link rel="apple-touch-icon" href="logobrowser.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #070707;
+      --dark: #111111;
+      --panel: #171717;
+      --red: #e50914;
+      --red-dark: #b90009;
+      --text: #151515;
+      --muted: #6f6f6f;
+      --line: #e2e2e2;
+      --soft: #f6f6f6;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 82px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #010101;
+      border-bottom: 1px solid #262626;
+      height: 82px;
+    }
+
+    .nav {
+      width: min(1320px, calc(100% - 64px));
+      margin: 0 auto;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .brand img {
+      width: 108px;
+      height: 68px;
+      object-fit: contain;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: #d8d8d8;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .links a {
+      height: 82px;
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .links a.active {
+      color: var(--red);
+    }
+
+    .links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .links a:hover {
+      color: var(--red);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hamburger {
+      display: none;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger span,
+    .hamburger::before,
+    .hamburger::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+    }
+
+    .hamburger {
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(0, 0, 0, .68);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+      width: min(80vw, 340px);
+      height: 100vh;
+      padding: 28px 26px;
+      background: #050505;
+      color: #fff;
+      transform: translateX(100%);
+      visibility: hidden;
+      transition: transform .28s ease;
+      box-shadow: -20px 0 55px rgba(0,0,0,.35);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .drawer-head img {
+      width: 112px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .drawer-close {
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 1px solid #333;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .mobile-links {
+      display: grid;
+      gap: 2px;
+    }
+
+    .mobile-links a {
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #1d1d1d;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .mobile-links a.active,
+    .mobile-links a:hover {
+      color: var(--red);
+    }
+
+    .drawer-actions {
+      margin-top: auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .drawer-actions .btn {
+      min-height: 50px;
+      width: 100%;
+    }
+
+    .drawer-actions .whatsapp {
+      width: 100%;
+      height: 50px;
+      gap: 10px;
+      display: flex;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    body.drawer-open {
+      overflow: hidden;
+    }
+
+    body.drawer-open .mobile-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    body.drawer-open .mobile-drawer {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 25px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .btn-red:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-dark {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,.45);
+    }
+
+    .btn-light {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--line);
+    }
+
+    .whatsapp {
+      width: 46px;
+      height: 46px;
+      border: 1px solid #3d3d3d;
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      position: relative;
+    }
+
+    .whatsapp svg,
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.4;
+    }
+
+    .whatsapp svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .hero {
+      min-height: 500px;
+      padding: 0;
+      background: var(--black);
+      color: var(--white);
+      border-bottom: 1px solid #202020;
+    }
+
+    .hero-shell {
+      width: min(1320px, 100%);
+      height: 500px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .wrap {
+      width: min(1320px, calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .hero-copy {
+      width: 100%;
+      max-width: none;
+      padding: 56px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.98), rgba(0,0,0,.92)),
+        repeating-linear-gradient(90deg, transparent 0 72px, rgba(255,255,255,.025) 72px 73px);
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: 500px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.14), rgba(0,0,0,0) 38%);
+      pointer-events: none;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero .eyebrow {
+      color: #ffffff;
+      font-size: 14px;
+      margin-bottom: 16px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 74px);
+      line-height: .94;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      font-weight: 900;
+      max-width: 740px;
+    }
+
+    .hero h1 {
+      font-family: Anton, Oswald, "Arial Narrow", sans-serif;
+      font-size: clamp(48px, 3.85vw, 58px);
+      line-height: 1.04;
+      max-width: 640px;
+      margin-bottom: 20px;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .red {
+      color: var(--red);
+    }
+
+    .hero p {
+      color: #d7d7d7;
+      max-width: 560px;
+      line-height: 1.6;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .hero .btn {
+      min-height: 54px;
+      padding-inline: 28px;
+      font-size: 13px;
+    }
+
+    .hero .btn-red::after,
+    .topbar .btn-red::after {
+      content: "\2192";
+      margin-left: 6px;
+      font-weight: 900;
+    }
+
+    .hero .btn-dark {
+      gap: 10px;
+    }
+
+    .stats {
+      background: #080808;
+      color: var(--white);
+      border-top: 1px solid #2b2b2b;
+      border-bottom: 1px solid #2b2b2b;
+    }
+
+    .stats-grid {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat {
+      padding: 30px 16px;
+      text-align: center;
+      border-left: 1px solid #282828;
+    }
+
+    .stat:last-child {
+      border-right: 1px solid #282828;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: #a5a5a5;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .hero-stats {
+      background: linear-gradient(90deg, #050505, #111 50%, #050505);
+      color: #fff;
+      border-top: 1px solid #202020;
+      border-bottom: 1px solid #202020;
+    }
+
+    .hero-stats-grid {
+      width: min(1320px, calc(100% - 64px));
+      height: 88px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero-stat {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      padding: 0 48px;
+      position: relative;
+    }
+
+    .hero-stat + .hero-stat::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 1px;
+      background: #2f2f2f;
+    }
+
+    .hero-stat .iconbox {
+      flex: 0 0 auto;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      border: 0;
+      color: var(--red);
+    }
+
+    .hero-stat .iconbox svg {
+      width: 38px;
+      height: 38px;
+      stroke-width: 1.8;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+      margin-bottom: 7px;
+      font-weight: 900;
+    }
+
+    .hero-stat span {
+      color: #d0d0d0;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .home-services {
+      padding: 54px 0 56px;
+    }
+
+    .home-services .section-head {
+      align-items: start;
+      margin-bottom: 28px;
+    }
+
+    .home-services .eyebrow {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .home-services h2 {
+      font-size: clamp(26px, 2vw, 32px);
+      line-height: 1.12;
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .home-services .btn-light {
+      min-height: 42px;
+      padding-inline: 18px;
+      font-size: 10px;
+      background: #fff;
+    }
+
+    .home-services .btn-light::after {
+      content: "\2192";
+      margin-left: 8px;
+      font-weight: 900;
+    }
+
+    .home-services .service-grid {
+      gap: 14px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 3vw, 48px);
+      line-height: 1.08;
+      margin-bottom: 10px;
+      font-weight: 900;
+    }
+
+    .section-head p,
+    .lead {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .service-mini,
+    .product,
+    .project,
+    .testimonial,
+    .process-step,
+    .contact-card,
+    .field {
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 2px;
+    }
+
+    .service-mini {
+      min-height: 170px;
+      padding: 24px 16px;
+    }
+
+    .home-services .service-mini {
+      height: 184px;
+      min-height: 184px;
+      padding: 20px 18px 18px;
+      border-color: #e7e7e7;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .035);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .iconbox {
+      width: 38px;
+      height: 38px;
+      color: var(--red);
+      border: 1px solid #ffd0d0;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+    }
+
+    .iconbox svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .home-services .iconbox {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 20px;
+      border-color: #ffbfc4;
+    }
+
+    .home-services .iconbox svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 1.8;
+    }
+
+    .service-mini h3,
+    .product h3,
+    .service-card h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+      font-weight: 900;
+    }
+
+    .service-mini p,
+    .product p,
+    .service-card p,
+    .testimonial p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    .home-services .service-mini h3 {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .home-services .service-mini p {
+      font-size: 11px;
+      line-height: 1.5;
+      max-width: 145px;
+    }
+
+    .learn-more {
+      margin-top: auto;
+      padding-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .products {
+      background: #fafafa;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      overflow: hidden;
+    }
+
+    .product-img {
+      height: 190px;
+      background: #ddd;
+    }
+
+    .product-body {
+      padding: 18px;
+    }
+
+    .price {
+      display: block;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .about {
+      padding: 0;
+      display: block;
+      min-height: 0;
+      background: #fff;
+    }
+
+    .about-hero {
+      background: #050505;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .about-hero-grid {
+      height: 285px;
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      align-items: stretch;
+    }
+
+    .about-hero-copy {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 54px;
+      background:
+        linear-gradient(115deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.91) 62%, rgba(0, 0, 0, 0.56) 100%),
+        radial-gradient(circle at 92% 50%, rgba(255, 255, 255, 0.07), transparent 38%);
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .breadcrumb a {
+      color: #fff;
+    }
+
+    .breadcrumb span:last-child {
+      color: var(--red);
+    }
+
+    .about-hero h1 {
+      position: relative;
+      margin: 0 0 26px;
+      font-family: Inter, Arial, sans-serif;
+      font-size: clamp(42px, 4vw, 58px);
+      line-height: 0.95;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #fff;
+    }
+
+    .about-hero h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -15px;
+      width: 64px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .about-hero p {
+      max-width: 470px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 600;
+    }
+
+    .about-hero-image {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      border-top-left-radius: 155px;
+      border-bottom-left-radius: 155px;
+    }
+
+    .about-hero-image::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: var(--red);
+      z-index: 2;
+    }
+
+    .about-hero-image img,
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .about-main {
+      padding: 50px 0 58px;
+      background: #fff;
+    }
+
+    .about-main-grid {
+      width: min(1320px, calc(100% - 64px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-copy {
+      padding: 0;
+    }
+
+    .about-copy .eyebrow {
+      margin-bottom: 13px;
+    }
+
+    .about-copy h2 {
+      position: relative;
+      max-width: 560px;
+      margin-bottom: 34px;
+      font-size: clamp(34px, 3.2vw, 46px);
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .about-copy h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -18px;
+      width: 72px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .about-copy .lead {
+      max-width: 590px;
+      margin-bottom: 16px;
+      color: #4f5865;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .about-photo {
+      height: 430px;
+      min-height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #ddd;
+      box-shadow: 0 18px 45px rgba(15, 20, 30, 0.1);
+    }
+
+    .checks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 34px;
+      margin-top: 30px;
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 36px;
+      color: #111;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .check-icon {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 30px;
+      display: grid;
+      place-items: center;
+      color: #ef0b16;
+      border: 1.5px solid #ef0b16;
+      border-radius: 50%;
+      background: #fff;
+      margin: 0;
+    }
+
+    .check-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.9;
+    }
+
+    .mission {
+      border-top: 1px solid var(--line);
+      background: #fff;
+      padding: 0;
+    }
+
+    .mission-top {
+      width: min(1320px, calc(100% - 64px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.12fr;
+      align-items: stretch;
+      height: 285px;
+    }
+
+    .mission-copy {
+      padding: 22px 44px 22px 0;
+      display: grid;
+      align-content: center;
+      gap: 0;
+    }
+
+    .mission-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 22px;
+      padding: 18px 0;
+      border-bottom: 1px solid #e9e9e9;
+    }
+
+    .mission-item:last-child {
+      border-bottom: 0;
+    }
+
+    .mission-icon {
+      width: 42px;
+      height: 42px;
+      color: var(--red);
+      display: grid;
+      place-items: center;
+    }
+
+    .mission-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke-width: 2;
+    }
+
+    .mission-item h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .mission-item p {
+      margin: 0;
+      max-width: 480px;
+      color: #5f6670;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .mission-photo {
+      height: 285px;
+      overflow: hidden;
+    }
+
+    .mission-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .why-choose {
+      background: #fafafa;
+      border-top: 1px solid #ededed;
+      padding: 18px 0 26px;
+    }
+
+    .why-title {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .why-title .eyebrow {
+      margin-bottom: 4px;
+      font-size: 10px;
+    }
+
+    .why-title h2 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    .why-grid {
+      width: min(1320px, calc(100% - 64px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .why-card {
+      min-height: 128px;
+      padding: 18px 14px 16px;
+      border: 1px solid #e4e4e4;
+      background: #fff;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .035);
+    }
+
+    .why-card .iconbox {
+      width: 34px;
+      height: 34px;
+      margin: 0 auto 14px;
+      border-color: #ffbfc4;
+    }
+
+    .why-card h3 {
+      margin: 0 0 9px;
+      font-size: 11px;
+      line-height: 1.25;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .why-card p {
+      margin: 0 auto;
+      max-width: 145px;
+      color: #676d75;
+      font-size: 10px;
+      line-height: 1.45;
+    }
+
+    .services-page {
+      padding: 0;
+      background: #fff;
+    }
+
+    .services-banner {
+      height: 300px;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, .94) 0%, rgba(0, 0, 0, .76) 37%, rgba(0, 0, 0, .12) 100%),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1700&q=90") center/cover;
+    }
+
+    .services-banner .wrap {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .services-banner h2 {
+      margin: 0 0 22px;
+      color: #fff;
+      font-family: Inter, Arial, sans-serif;
+      font-size: clamp(46px, 4.4vw, 64px);
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .services-banner h2::after {
+      content: "";
+      display: block;
+      width: 68px;
+      height: 3px;
+      margin-top: 16px;
+      background: var(--red);
+    }
+
+    .services-banner p {
+      max-width: 470px;
+      margin: 0;
+      color: rgba(255, 255, 255, .86);
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .services-content {
+      padding: 54px 0 46px;
+    }
+
+    .services-intro {
+      max-width: 860px;
+      margin-bottom: 30px;
+    }
+
+    .services-intro .eyebrow {
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .services-intro h2 {
+      margin: 0 0 13px;
+      font-size: clamp(34px, 3.1vw, 46px);
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .services-intro p {
+      max-width: 790px;
+      margin: 0;
+      color: #4f5865;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .service-card {
+      overflow: hidden;
+      border: 1px solid #e3e3e3;
+      border-radius: 5px;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(12, 18, 28, .055);
+    }
+
+    .service-card .photo {
+      height: 185px;
+      background: #ddd;
+    }
+
+    .service-card .body {
+      position: relative;
+      min-height: 150px;
+      padding: 22px 24px 24px;
+    }
+
+    .service-card .body .iconbox {
+      width: 34px;
+      height: 34px;
+      margin: 0 0 14px;
+      color: var(--red);
+      border-color: #ffb8bf;
+      background: #fff;
+    }
+
+    .service-card h3 {
+      margin-bottom: 9px;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .service-card p {
+      min-height: 40px;
+      margin-bottom: 16px;
+      color: #5d6570;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .learn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .learn-link::after {
+      content: "\2192";
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .services-benefits {
+      margin-top: 34px;
+      padding: 22px 26px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid #e4e4e4;
+      border-radius: 5px;
+      background: #fbfbfb;
+      box-shadow: 0 14px 34px rgba(12, 18, 28, .04);
+    }
+
+    .service-benefit {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+      align-items: center;
+      min-height: 62px;
+      padding: 0 20px;
+      border-right: 1px solid #e3e3e3;
+    }
+
+    .service-benefit:first-child {
+      padding-left: 0;
+    }
+
+    .service-benefit:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+
+    .service-benefit .iconbox {
+      width: 36px;
+      height: 36px;
+      margin: 0;
+      color: var(--red);
+      border: 0;
+    }
+
+    .service-benefit .iconbox svg {
+      width: 29px;
+      height: 29px;
+      stroke-width: 1.8;
+    }
+
+    .service-benefit h3 {
+      margin: 0 0 5px;
+      color: #111;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .service-benefit p {
+      margin: 0;
+      color: #6b717b;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .services-cta {
+      margin-top: 28px;
+      color: #fff;
+      background:
+        linear-gradient(118deg, #070707 0 49%, #ed0712 49.2% 100%);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .services-cta-inner {
+      min-height: 96px;
+      padding: 24px 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .services-cta h2 {
+      margin: 0 0 5px;
+      color: #fff;
+      font-size: 25px;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .services-cta p {
+      margin: 0;
+      color: rgba(255, 255, 255, .78);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .services-cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .services-cta .btn {
+      min-height: 44px;
+      padding: 0 24px;
+      border-color: rgba(255, 255, 255, .35);
+      font-size: 11px;
+    }
+
+    .services-cta .btn::after {
+      content: "\2192";
+      margin-left: 12px;
+    }
+
+    .services-cta .whatsapp {
+      width: 44px;
+      height: 44px;
+      border-color: rgba(255, 255, 255, .35);
+    }
+
+    .shop-hero {
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.72) 46%, rgba(0,0,0,.18) 100%),
+        url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1700&q=85") center/cover;
+      color: var(--white);
+      padding: 76px 0;
+    }
+
+    .shop {
+      background: #f7f7f7;
+      padding: 28px 0 48px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .product-count {
+      color: #545b65;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .field {
+      height: 38px;
+      padding: 0 14px;
+      color: #6f6f6f;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-radius: 4px;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: 245px 1fr;
+      gap: 28px;
+    }
+
+    .sidebar {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      display: grid;
+      align-content: start;
+      gap: 26px;
+    }
+
+    .sidebar h3 {
+      color: var(--red);
+      font-size: 12px;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0;
+      color: #666;
+      font-size: 13px;
+    }
+
+    .filter-card {
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: 5px;
+      padding: 18px;
+    }
+
+    .category-list li {
+      min-height: 42px;
+      display: grid;
+      grid-template-columns: 24px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      border-radius: 4px;
+      padding: 0 10px;
+      font-weight: 600;
+    }
+
+    .category-list li.active {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .category-list svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.8;
+    }
+
+    .price-range {
+      padding-top: 4px;
+    }
+
+    .price-range p {
+      color: #5c626b;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .range-line {
+      height: 2px;
+      background: var(--red);
+      position: relative;
+      margin: 0 8px 24px;
+    }
+
+    .range-line::before,
+    .range-line::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      background: #fff;
+      transform: translateY(-50%);
+    }
+
+    .range-line::before {
+      left: -8px;
+    }
+
+    .range-line::after {
+      right: -8px;
+    }
+
+    .black-btn {
+      width: 100%;
+      min-height: 42px;
+      background: #050505;
+      color: #fff;
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    .help-card {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .help-card .help-icon {
+      color: #050505;
+    }
+
+    .help-card svg {
+      width: 34px;
+      height: 34px;
+      stroke-width: 1.8;
+    }
+
+    .help-card h3 {
+      color: #151515;
+      font-size: 15px;
+      margin: 0 0 6px;
+      text-transform: none;
+    }
+
+    .help-card p {
+      color: #5f6570;
+      font-size: 12px;
+      line-height: 1.45;
+      margin: 0 0 14px;
+    }
+
+    .help-card .black-btn {
+      grid-column: 1 / -1;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product .btn {
+      width: 100%;
+      min-height: 34px;
+      margin-top: 14px;
+      font-size: 10px;
+    }
+
+    .shop .product {
+      border-radius: 5px;
+      border-color: #e2e2e2;
+      box-shadow: 0 12px 28px rgba(0,0,0,.035);
+    }
+
+    .shop .product-img {
+      height: 196px;
+      background: #eee;
+    }
+
+    .shop .product-body {
+      min-height: 164px;
+      padding: 14px 16px 16px;
+    }
+
+    .shop .product h3 {
+      font-size: 16px;
+      text-transform: none;
+      margin-bottom: 8px;
+    }
+
+    .shop .product p {
+      min-height: 38px;
+      color: #59616d;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .shop .price {
+      color: var(--red);
+      font-size: 16px;
+      margin-top: 12px;
+    }
+
+    .shop .product .btn {
+      background: #050505;
+      color: #fff;
+      border-color: #050505;
+      border-radius: 2px;
+      min-height: 32px;
+      margin-top: 12px;
+    }
+
+    .shop .product .btn::before {
+      content: none;
+    }
+
+    .bulk-cta {
+      margin-top: 28px;
+      min-height: 126px;
+      padding: 0 46px;
+      background: linear-gradient(90deg, #070707, #171717);
+      color: #fff;
+      border-radius: 5px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .bulk-icon {
+      width: 58px;
+      height: 58px;
+      color: var(--red);
+      display: grid;
+      place-items: center;
+    }
+
+    .bulk-icon svg {
+      width: 48px;
+      height: 48px;
+      stroke-width: 1.7;
+    }
+
+    .bulk-cta h2 {
+      color: #fff;
+      font-size: 24px;
+      margin: 0 0 8px;
+    }
+
+    .bulk-cta p {
+      color: #d6d6d6;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .bulk-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .bulk-actions .btn-red {
+      min-height: 50px;
+      min-width: 220px;
+    }
+
+    .bulk-actions .btn-red::after {
+      content: "\2192";
+      margin-left: 8px;
+    }
+
+    .bulk-actions .btn-dark {
+      min-height: 50px;
+      min-width: 170px;
+      border-color: rgba(255,255,255,.35);
+      border-radius: 2px;
+      font-size: 12px;
+    }
+
+    .bulk-actions .btn-dark svg {
+      color: #25d366;
+    }
+
+    .inquiry-float {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: #070707;
+      color: #fff;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      box-shadow: 0 20px 45px rgba(0,0,0,.28);
+      transform: translateY(18px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .22s ease;
+    }
+
+    .inquiry-float.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .inquiry-clip {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #353535;
+      color: var(--red);
+    }
+
+    .inquiry-clip svg {
+      width: 26px;
+      height: 26px;
+      stroke-width: 1.8;
+    }
+
+    .inquiry-count {
+      position: absolute;
+      top: -9px;
+      right: -9px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--red);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .inquiry-copy strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .inquiry-copy span {
+      display: block;
+      color: #cfcfcf;
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .inquiry-whatsapp {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      background: #075e34;
+      color: #25d366;
+      border-radius: 3px;
+    }
+
+    .inquiry-whatsapp svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .projects {
+      background: var(--white);
+      padding-bottom: 18px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .tab {
+      height: 36px;
+      min-width: 94px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tab.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      height: 210px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 38%, rgba(0,0,0,.82));
+    }
+
+    .project-title {
+      position: absolute;
+      z-index: 2;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      color: #fff;
+    }
+
+    .project-title strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .project-title span {
+      color: #cfcfcf;
+      font-size: 12px;
+    }
+
+    .process {
+      background: #fff;
+      padding: 62px 0 66px;
+    }
+
+    .process-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .process-copy {
+      padding-top: 2px;
+    }
+
+    .process-copy .eyebrow {
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .process-copy h2 {
+      max-width: 430px;
+      margin: 0 0 18px;
+      font-size: clamp(34px, 3vw, 44px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .process-copy .lead {
+      max-width: 470px;
+      margin: 0 0 36px;
+      color: #515966;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .process-timeline {
+      display: grid;
+      gap: 0;
+      max-width: 540px;
+    }
+
+    .process-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 52px 58px 1fr;
+      gap: 16px;
+      align-items: center;
+      min-height: 92px;
+      padding: 0 0 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .process-step + .process-step {
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .process-step::before {
+      content: "";
+      position: absolute;
+      left: 25px;
+      top: 0;
+      bottom: 0;
+      border-left: 2px dashed #f04b52;
+    }
+
+    .process-step:first-child::before {
+      top: 46px;
+    }
+
+    .process-step:last-child::before {
+      bottom: 46px;
+    }
+
+    .num {
+      position: relative;
+      z-index: 1;
+      width: 44px;
+      height: 44px;
+      margin: 0;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .process-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--red);
+    }
+
+    .process-icon svg {
+      width: 34px;
+      height: 34px;
+      stroke-width: 1.7;
+    }
+
+    .process-step h3 {
+      margin: 0 0 7px;
+      color: #151515;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .process-step p {
+      margin: 0;
+      max-width: 360px;
+      color: #5d6570;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .process-photo {
+      height: 720px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #ddd;
+      box-shadow: 0 18px 45px rgba(15, 20, 30, .08);
+    }
+
+    .process-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .cta {
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.62)),
+        url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=85") center/cover;
+      color: #fff;
+      padding: 64px 0;
+    }
+
+    .cta .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .cta h2 {
+      max-width: 620px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .cta p {
+      color: #cfcfcf;
+      margin-bottom: 0;
+    }
+
+    .project-cta {
+      background: #fff;
+      padding: 0 0 34px;
+    }
+
+    .project-cta .wrap {
+      min-height: 76px;
+      padding: 0 48px;
+      background: linear-gradient(90deg, #e60009 0%, #e50914 58%, #d80008 100%);
+      color: #fff;
+      border-radius: 4px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 14px 34px rgba(229, 9, 20, .18);
+    }
+
+    .project-cta-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.45);
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
+
+    .project-cta-icon svg {
+      width: 25px;
+      height: 25px;
+      stroke-width: 1.7;
+    }
+
+    .project-cta h2 {
+      margin: 0 0 4px;
+      font-size: 21px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .project-cta p {
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .project-cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .project-cta .btn {
+      min-height: 44px;
+      min-width: 190px;
+      border-color: rgba(255,255,255,.45);
+      background: transparent;
+      color: #fff;
+      font-size: 11px;
+    }
+
+    .project-cta .btn::after {
+      content: "\2192";
+      margin-left: 9px;
+    }
+
+    .project-cta .whatsapp {
+      width: 44px;
+      height: 44px;
+      border-color: rgba(0,0,0,.18);
+      background: #111;
+      color: #25d366;
+    }
+
+    .testimonials {
+      background: #fff;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testimonial {
+      padding: 30px;
+    }
+
+    .quote {
+      color: var(--red);
+      font-size: 42px;
+      line-height: .7;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .person {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .person strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .person span {
+      color: #777;
+      font-size: 12px;
+    }
+
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 22px;
+      padding-top: 38px;
+      color: #9a9a9a;
+      text-align: center;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .contact {
+      background: #f7f7f7;
+      padding-bottom: 0;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 36px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 13px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: #171717;
+      margin-bottom: 4px;
+    }
+
+    .contact-form {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      min-height: 46px;
+      padding: 0 14px;
+      margin-bottom: 12px;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 140px;
+      padding-top: 14px;
+      resize: vertical;
+    }
+
+    .contact-form .btn {
+      width: 100%;
+    }
+
+    .map {
+      width: min(1320px, calc(100% - 64px));
+      margin: 62px auto 0;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #e1e1e1;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 16px 38px rgba(15, 20, 30, .05);
+    }
+
+    .map-visual {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      background: #eef0f2;
+    }
+
+    .map-visual iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+      filter: grayscale(1) saturate(.18) contrast(.96) brightness(1.12);
+      transform: scale(1.04);
+      transform-origin: center;
+    }
+
+    .map-tiles {
+      position: absolute;
+      inset: -8px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      opacity: .68;
+      filter: grayscale(1) saturate(.12) contrast(.92) brightness(1.12);
+    }
+
+    .map-tiles img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .map-card {
+      position: relative;
+      min-height: 112px;
+      background: #fff;
+      padding: 26px 28px;
+      border-top: 1px solid #e8e8e8;
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .map-card-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: #fff1f2;
+      color: var(--red);
+    }
+
+    .map-card-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke-width: 2;
+    }
+
+    .map-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #111;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .map-card p {
+      margin: 0;
+      color: #252525;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .map-directions {
+      min-height: 44px;
+      padding: 0 20px;
+      border: 1px solid #ffb7bd;
+      color: var(--red);
+      background: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .map-directions::after {
+      content: "\2192";
+      margin-left: 10px;
+    }
+
+    .pin {
+      position: absolute;
+      left: 49%;
+      top: 38%;
+      width: 38px;
+      height: 38px;
+      background: var(--red);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      box-shadow: 0 8px 22px rgba(237, 7, 18, .32);
+    }
+
+    .pin::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      left: 12px;
+      top: 12px;
+    }
+
+    footer {
+      background: #080808;
+      color: #fff;
+      padding: 54px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.35fr repeat(4, 1fr);
+      gap: 44px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid #262626;
+    }
+
+    footer p,
+    footer li {
+      color: #b8b8b8;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    footer h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+    }
+
+    footer ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+
+    .social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .social a {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #424242;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .copyright {
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    @media (max-width: 1023px) {
+      .links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .actions .btn {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      .hero-shell {
+        height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-image {
+        min-height: 430px;
+      }
+
+      .service-grid,
+      .why-grid,
+      .process-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .services-benefits {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .service-benefit:nth-child(2) {
+        border-right: 0;
+      }
+
+      .service-benefit:nth-child(n + 3) {
+        padding-top: 18px;
+        margin-top: 18px;
+        border-top: 1px solid #e3e3e3;
+      }
+
+      .catalog,
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-hero-grid,
+      .about-main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hero-grid {
+        height: auto;
+      }
+
+      .about-hero-copy {
+        min-height: 260px;
+        padding: 48px 0;
+      }
+
+      .about-hero-image {
+        height: 260px;
+        border-radius: 0;
+      }
+
+      .about-main-grid {
+        gap: 36px;
+      }
+
+      .process-layout {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .process-photo {
+        height: 460px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 780px) {
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      html {
+        scroll-padding-top: 96px;
+      }
+
+      body {
+        padding-top: 86px;
+      }
+
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 80;
+        height: 70px;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 0;
+        background: rgba(1, 1, 1, .97);
+        box-shadow: 0 10px 24px rgba(0,0,0,.22);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav {
+        width: 100%;
+        height: 70px;
+        padding: 0 14px 0 16px;
+        gap: 14px;
+      }
+
+      .brand img {
+        width: 124px;
+        height: 58px;
+      }
+
+      .actions {
+        gap: 12px;
+        margin-left: auto;
+      }
+
+      .actions .whatsapp {
+        width: 44px;
+        height: 44px;
+        border-color: rgba(255,255,255,.22);
+      }
+
+      .actions .whatsapp svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .hamburger {
+        width: 42px;
+        height: 42px;
+        gap: 6px;
+      }
+
+      .hamburger span,
+      .hamburger::before,
+      .hamburger::after {
+        width: 30px;
+        height: 2px;
+      }
+
+      .hero {
+        min-height: auto;
+        overflow: hidden;
+      }
+
+      .hero-image {
+        min-height: 240px;
+        order: -1;
+      }
+
+      .hero-copy {
+        min-height: auto;
+        padding: 38px 24px 40px;
+      }
+
+      .hero h1 {
+        font-size: clamp(38px, 11vw, 52px);
+      }
+
+      .hero p {
+        font-size: 15px;
+        margin-bottom: 24px;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .hero .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-stats-grid {
+        width: calc(100% - 32px);
+        height: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 16px 0;
+        gap: 0;
+      }
+
+      .hero-stat {
+        min-width: 0;
+        min-height: 96px;
+        padding: 16px 10px;
+        gap: 12px;
+      }
+
+      .hero-stat + .hero-stat::before {
+        display: none;
+      }
+
+      .hero-stat:nth-child(2n) {
+        border-left: 1px solid #242424;
+      }
+
+      .hero-stat:nth-child(n + 3) {
+        border-top: 1px solid #242424;
+      }
+
+      .hero-stat .iconbox {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+      }
+
+      .hero-stat .iconbox svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .hero-stat strong {
+        font-size: 22px;
+        margin-bottom: 5px;
+      }
+
+      .hero-stat span {
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .home-services {
+        padding: 44px 0 46px;
+        overflow: hidden;
+      }
+
+      .home-services .wrap {
+        width: calc(100% - 32px);
+      }
+
+      .home-services .section-head {
+        margin-bottom: 20px;
+        gap: 16px;
+      }
+
+      .home-services h2 {
+        font-size: 30px;
+        line-height: 1.12;
+      }
+
+      .home-services .btn-light {
+        width: auto;
+        min-height: 40px;
+      }
+
+      .home-services .service-grid {
+        gap: 12px;
+      }
+
+      .home-services .service-mini {
+        height: auto;
+        min-height: 158px;
+        padding: 18px 18px;
+      }
+
+      .home-services .iconbox {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 18px;
+      }
+
+      .home-services .iconbox svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .process {
+        padding: 46px 0 50px;
+      }
+
+      .process-layout {
+        gap: 28px;
+      }
+
+      .process-copy h2 {
+        font-size: 30px;
+      }
+
+      .process-copy .lead {
+        margin-bottom: 26px;
+      }
+
+      .process-step {
+        grid-template-columns: 44px 42px 1fr;
+        gap: 12px;
+        min-height: 104px;
+      }
+
+      .num {
+        width: 38px;
+        height: 38px;
+        font-size: 12px;
+      }
+
+      .process-step::before {
+        left: 19px;
+      }
+
+      .process-step:first-child::before {
+        top: 52px;
+      }
+
+      .process-step:last-child::before {
+        bottom: 52px;
+      }
+
+      .process-icon,
+      .process-icon svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .process-step h3 {
+        font-size: 14px;
+      }
+
+      .process-step p {
+        font-size: 11px;
+      }
+
+      .process-photo {
+        height: 360px;
+        border-radius: 8px;
+      }
+
+      .stats-grid,
+      .about,
+      .mission,
+      .mission-top,
+      .services-layout,
+      .contact-layout,
+      .shop-grid,
+      .testimonial-grid,
+      .project-grid,
+      .service-cards,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head,
+      .cta .wrap,
+      .copyright {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .service-grid,
+      .why-grid,
+      .process-row,
+      .catalog,
+      .product-grid,
+      .filters,
+      .services-benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .services-banner {
+        height: 260px;
+      }
+
+      .services-content {
+        padding: 42px 0 40px;
+      }
+
+      .services-intro {
+        margin-bottom: 24px;
+      }
+
+      .service-benefit,
+      .service-benefit:first-child,
+      .service-benefit:last-child {
+        padding: 0;
+        border-right: 0;
+      }
+
+      .service-benefit + .service-benefit {
+        padding-top: 16px;
+        margin-top: 16px;
+        border-top: 1px solid #e3e3e3;
+      }
+
+      .services-cta {
+        background: #ed0712;
+        margin-top: 22px;
+        border-radius: 5px;
+      }
+
+      .services-cta-inner {
+        min-height: 0;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 18px;
+        padding: 24px 20px;
+        text-align: center;
+      }
+
+      .services-cta h2 {
+        font-size: 27px;
+        line-height: 1.08;
+        max-width: 260px;
+        margin: 0 auto 8px;
+      }
+
+      .services-cta p {
+        max-width: 260px;
+        margin: 0 auto;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .services-cta-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .services-cta .btn {
+        width: 100%;
+        min-height: 50px;
+        padding: 0 18px;
+        border-color: rgba(255,255,255,.48);
+      }
+
+      .services-cta .whatsapp {
+        width: 100%;
+        height: 50px;
+        background: #070707;
+        border-color: #070707;
+      }
+
+      .bulk-actions,
+      .project-cta-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .bulk-cta {
+        margin-top: 24px;
+        min-height: 0;
+        padding: 28px 22px;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        text-align: center;
+        border-radius: 6px;
+        background: linear-gradient(145deg, #060606, #171717);
+      }
+
+      .bulk-icon {
+        width: 54px;
+        height: 54px;
+        margin: 0 auto;
+      }
+
+      .bulk-icon svg {
+        width: 44px;
+        height: 44px;
+      }
+
+      .bulk-cta h2 {
+        max-width: 270px;
+        margin: 0 auto 9px;
+        font-size: 27px;
+        line-height: 1.08;
+      }
+
+      .bulk-cta p {
+        max-width: 285px;
+        margin: 0 auto;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .bulk-actions .btn-red,
+      .bulk-actions .btn-dark,
+      .project-cta .btn,
+      .project-cta .whatsapp {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .bulk-actions .btn-red,
+      .bulk-actions .btn-dark {
+        min-height: 52px;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      .bulk-actions .btn-dark {
+        background: #0b0b0b;
+      }
+
+      .project-cta {
+        padding: 0 0 28px;
+      }
+
+      .project-cta .wrap {
+        width: calc(100% - 32px);
+        min-height: 0;
+        padding: 26px 22px;
+        grid-template-columns: 1fr;
+        gap: 17px;
+        text-align: center;
+        border-radius: 6px;
+        background: #ed0712;
+      }
+
+      .project-cta-icon {
+        width: 52px;
+        height: 52px;
+        margin: 0 auto;
+        border-color: rgba(255,255,255,.45);
+      }
+
+      .project-cta-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .project-cta h2 {
+        max-width: 260px;
+        margin: 0 auto 8px;
+        font-size: 27px;
+        line-height: 1.08;
+      }
+
+      .project-cta p {
+        max-width: 250px;
+        margin: 0 auto;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .project-cta-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .project-cta .btn,
+      .project-cta .whatsapp {
+        min-height: 52px;
+      }
+
+      .project-cta .btn {
+        background: transparent;
+        border-color: rgba(255,255,255,.48);
+      }
+
+      .project-cta .whatsapp {
+        display: grid;
+        place-items: center;
+        background: #080808;
+        border-color: #080808;
+      }
+
+      .about-copy,
+      .mission-copy {
+        padding: 64px 16px;
+      }
+
+      .about .about-copy {
+        padding: 0;
+      }
+
+      .about-main {
+        padding: 42px 0 48px;
+      }
+
+      .about-main-grid,
+      .about-hero-grid {
+        width: calc(100% - 32px);
+      }
+
+      .about-hero-copy {
+        min-height: 250px;
+        padding: 40px 0;
+      }
+
+      .about-hero h1 {
+        font-size: 42px;
+      }
+
+      .about-photo {
+        height: 280px;
+      }
+
+      .checks {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .mission-top,
+      .why-grid {
+        width: calc(100% - 32px);
+      }
+
+      .mission-photo {
+        min-height: 260px;
+      }
+
+      .map {
+        width: calc(100% - 32px);
+        margin-top: 42px;
+      }
+
+      .map-visual {
+        height: 190px;
+      }
+
+      .map-card {
+        grid-template-columns: 46px 1fr;
+        gap: 14px;
+        padding: 20px;
+      }
+
+      .map-directions {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#home" aria-label="ABE home">
+        <img src="logo1.png" alt="ABE Plaster & Gypsum Partition logo" />
+      </a>
+      <div class="links">
+        <a class="active" href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#shop">Products</a>
+        <a href="#projects">Projects</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="actions">
+        <a class="btn btn-red" href="#contact">Get Free Quotation</a>
+        <a class="whatsapp" href="https://wa.me/60123456789" aria-label="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z"/></svg></a>
+        <button class="hamburger" type="button" aria-label="Open navigation menu" aria-controls="mobileDrawer" aria-expanded="false"><span></span></button>
+      </div>
+    </nav>
+  </header>
+  <div class="mobile-overlay" data-drawer-close></div>
+  <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+    <div class="drawer-head">
+      <img src="logo1.png" alt="ABE Plaster & Gypsum Partition logo" />
+      <button class="drawer-close" type="button" aria-label="Close navigation menu" data-drawer-close>&times;</button>
+    </div>
+    <div class="mobile-links">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#shop">Products</a>
+      <a href="#projects">Projects</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="drawer-actions">
+      <a class="btn btn-red" href="#contact">Get Free Quotation</a>
+      <a class="whatsapp" href="https://wa.me/60123456789" aria-label="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z"/></svg> WhatsApp Us</a>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <div class="eyebrow">Professional Ceiling & Partition</div>
+          <h1>Premium Plaster Ceiling & Gypsum Partition <span class="red">Solutions</span></h1>
+          <p>We provide high-quality ceiling and partition installation services for residential, commercial, and industrial spaces. Built with expertise, designed for perfection.</p>
+          <div class="hero-actions">
+            <a class="btn btn-red" href="#contact">Get Free Quotation</a>
+            <a class="btn btn-dark" href="https://wa.me/60123456789"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z" fill="currentColor"/></svg>WhatsApp Us</a>
+          </div>
+        </div>
+        <div class="hero-image" aria-label="Premium living room plaster ceiling">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=92" alt="Luxury living room with premium plaster ceiling lighting" />
+        </div>
+      </div>
+    </section>
+
+    <div class="hero-stats">
+      <div class="hero-stats-grid">
+        <div class="hero-stat">
+          <div class="iconbox" data-lucide="users"></div>
+          <div><strong>10+</strong><span>Years Experience</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="iconbox" data-lucide="building-2"></div>
+          <div><strong>500+</strong><span>Projects Completed</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="iconbox" data-lucide="truck"></div>
+          <div><strong>FAST</strong><span>Delivery</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="iconbox" data-lucide="shield-check"></div>
+          <div><strong>100%</strong><span>Quality Guarantee</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="about" id="about">
+      <div class="about-hero">
+        <div class="wrap about-hero-grid">
+          <div class="about-hero-copy">
+            <h1>About Us</h1>
+            <p>We build better spaces with quality workmanship, premium materials, and a commitment to excellence.</p>
+          </div>
+          <div class="about-hero-image">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1500&q=90" alt="Modern glass office interior" />
+          </div>
+        </div>
+      </div>
+      <div class="about-main">
+        <div class="about-main-grid">
+          <div class="about-copy">
+            <div class="eyebrow">About ACE</div>
+            <h2>We Build Better Spaces With Quality & <span class="red">Professionalism</span></h2>
+            <p class="lead">ABE Plaster Ceiling & Gypsum Partition is a trusted interior contracting company in Malaysia, specializing in ceiling and partition installation for residential, commercial, and industrial projects.</p>
+            <p class="lead">We are committed to delivering high-quality workmanship, using premium materials, and ensuring every project is completed on time and within budget.</p>
+            <div class="checks">
+              <div class="check"><span class="check-icon"><i data-lucide="users"></i></span>Experienced & Professional Team</div>
+              <div class="check"><span class="check-icon"><i data-lucide="layers"></i></span>High-Quality Materials</div>
+              <div class="check"><span class="check-icon"><i data-lucide="clock"></i></span>On-Time & Reliable Completion</div>
+              <div class="check"><span class="check-icon"><i data-lucide="circle-dollar-sign"></i></span>Affordable & Transparent Pricing</div>
+            </div>
+          </div>
+          <div class="about-photo">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=90" alt="Premium office partition interior" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-page" id="services">
+      <div class="services-banner">
+        <div class="wrap">
+          <h2>Services</h2>
+          <p>High quality ceiling and partition solutions designed for every space and built to last.</p>
+        </div>
+      </div>
+      <div class="services-content">
+        <div class="wrap">
+          <div class="services-intro">
+            <div class="eyebrow">Our Services</div>
+            <h2>High Quality Ceiling & Partition Solutions</h2>
+            <p>We provide professional ceiling and partition installation services for residential, commercial, and industrial spaces. From modern designs to expert workmanship, we deliver solutions that combine quality, functionality, and style.</p>
+          </div>
+          <div class="service-cards">
+            <article class="service-card">
+              <div class="photo"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=850&q=88" alt="Plaster ceiling" /></div>
+              <div class="body"><div class="iconbox" data-lucide="panels-top-left"></div><h3>Plaster Ceiling</h3><p>Smooth and elegant ceiling finishes for a modern look.</p><a class="learn-link" href="#contact">Learn More</a></div>
+            </article>
+            <article class="service-card">
+              <div class="photo"><img src="hero-room.png" alt="Gypsum ceiling" /></div>
+              <div class="body"><div class="iconbox" data-lucide="diamond"></div><h3>Gypsum Ceiling</h3><p>Stylish and durable gypsum ceiling solutions for any space.</p><a class="learn-link" href="#contact">Learn More</a></div>
+            </article>
+            <article class="service-card">
+              <div class="photo"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=850&q=88" alt="Partition wall framing" /></div>
+              <div class="body"><div class="iconbox" data-lucide="layout-panel-left"></div><h3>Partition Wall</h3><p>High-quality partition for residential and commercial spaces.</p><a class="learn-link" href="#contact">Learn More</a></div>
+            </article>
+            <article class="service-card">
+              <div class="photo"><img src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=850&q=88" alt="Office partition" /></div>
+              <div class="body"><div class="iconbox" data-lucide="building-2"></div><h3>Office Partition</h3><p>Modern office partition design for better workspace efficiency.</p><a class="learn-link" href="#contact">Learn More</a></div>
+            </article>
+            <article class="service-card">
+              <div class="photo"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=850&q=88" alt="Commercial ceiling" /></div>
+              <div class="body"><div class="iconbox" data-lucide="factory"></div><h3>Commercial Ceiling</h3><p>Ceiling solutions for commercial and industrial projects.</p><a class="learn-link" href="#contact">Learn More</a></div>
+            </article>
+            <article class="service-card">
+              <div class="photo"><img src="clinicrenovation.png" alt="Renovation work" /></div>
+              <div class="body"><div class="iconbox" data-lucide="wrench"></div><h3>Renovation Work</h3><p>Renovation and upgrading services for your space.</p><a class="learn-link" href="#contact">Learn More</a></div>
+            </article>
+          </div>
+          <div class="services-benefits">
+            <div class="service-benefit"><div class="iconbox" data-lucide="users"></div><div><h3>Expert Team</h3><p>Skilled and experienced professionals.</p></div></div>
+            <div class="service-benefit"><div class="iconbox" data-lucide="shield-check"></div><div><h3>Quality Guarantee</h3><p>Premium materials and workmanship.</p></div></div>
+            <div class="service-benefit"><div class="iconbox" data-lucide="truck"></div><div><h3>On-Time Delivery</h3><p>We deliver projects on time with efficient planning.</p></div></div>
+            <div class="service-benefit"><div class="iconbox" data-lucide="headphones"></div><div><h3>Reliable Support</h3><p>Dedicated support before, during and after project.</p></div></div>
+          </div>
+          <div class="services-cta">
+            <div class="services-cta-inner">
+              <div>
+                <h2>Ready To Transform Your Space?</h2>
+                <p>Get in touch with us today for a free consultation.</p>
+              </div>
+              <div class="services-cta-actions">
+                <a class="btn btn-red" href="#contact">Get Free Quotation</a>
+                <a class="whatsapp" href="https://wa.me/60124558130?text=Hi%20ACE%2C%20I%20would%20like%20to%20discuss%20a%20project%20and%20request%20a%20quotation." aria-label="WhatsApp ACE"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 4.5C9.7 4.5 4.55 9.6 4.55 15.88c0 2.03.54 4.02 1.57 5.76L4.5 27.5l6.04-1.58a11.55 11.55 0 0 0 5.5 1.4c6.34 0 11.49-5.1 11.49-11.38C27.53 9.6 22.38 4.5 16.04 4.5Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12.72 10.6c-.25-.56-.52-.57-.76-.58h-.65c-.22 0-.58.08-.89.4-.3.33-1.17 1.14-1.17 2.78s1.2 3.22 1.36 3.44c.17.22 2.32 3.7 5.72 5.04 2.83 1.12 3.4.9 4.02.84.61-.06 1.98-.8 2.26-1.58.28-.78.28-1.45.2-1.58-.08-.14-.3-.22-.64-.39-.34-.16-1.98-.97-2.29-1.08-.3-.11-.53-.16-.75.17-.22.33-.86 1.08-1.05 1.3-.2.22-.39.25-.72.08-.34-.16-1.42-.52-2.7-1.65-1-.88-1.67-1.97-1.86-2.3-.2-.33-.02-.5.15-.67.15-.15.34-.39.5-.58.17-.2.22-.34.34-.56.11-.22.06-.42-.03-.58-.08-.17-.74-1.8-1.04-2.45Z" fill="currentColor"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop-hero" id="shop">
+      <div class="wrap">
+        <div class="eyebrow">Our Products</div>
+        <h2>Quality Materials,<br />Built to Last</h2>
+        <p class="lead" style="color:#d7d7d7;">Explore our range of construction and interior materials for your next project.</p>
+      </div>
+    </section>
+
+    <section class="shop">
+      <div class="wrap">
+        <div class="filters">
+          <div class="product-count">Showing 1-11 of 11 products</div>
+          <div class="field">Search products... <i data-lucide="search"></i></div>
+        </div>
+        <div class="shop-grid">
+          <aside class="sidebar">
+            <div class="filter-card">
+              <h3>Categories</h3>
+              <ul class="category-list">
+                <li class="active"><i data-lucide="boxes"></i><span>All Products</span><strong>11</strong></li>
+                <li><i data-lucide="package"></i><span>Insulation</span><strong>1</strong></li>
+                <li><i data-lucide="door-open"></i><span>Doors</span><strong>2</strong></li>
+                <li><i data-lucide="box"></i><span>Gypsum & Boards</span><strong>2</strong></li>
+                <li><i data-lucide="wrench"></i><span>Accessories</span><strong>2</strong></li>
+                <li><i data-lucide="columns-3"></i><span>Metal Framing</span><strong>1</strong></li>
+              </ul>
+            </div>
+          </aside>
+          <div class="catalog">
+            <article class="product"><div class="product-img"><img src="rockwool.png" alt="Rockwool" /></div><div class="product-body"><h3>Rockwool</h3><p>Fire and sound insulation.</p><span class="price">MYR 98.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="aluminiumglassdoor.png" alt="Aluminium glass door" /></div><div class="product-body"><h3>Aluminium Glass Door</h3><p>High quality aluminium system.</p><span class="price">MYR 480.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="flexistopping.png" alt="Flexi and S88 stopping" /></div><div class="product-body"><h3>Flexi & S88 Stopping</h3><p>High quality stopping material for smooth finishing.</p><span class="price">MYR 110.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="gypsumboard.png" alt="Gypsum board" /></div><div class="product-body"><h3>Gypsum Board</h3><p>Available sizes: 4x8 and 4x6. Thickness: 9mm.</p><span class="price">MYR 21.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="asgjointtape.png" alt="ASG joint tape" /></div><div class="product-body"><h3>ASG Joint Tape</h3><p>High quality joint tape for smooth and strong seams.</p><span class="price">MYR 6.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="plywooddoor.png" alt="Plywood door" /></div><div class="product-body"><h3>Plywood Door</h3><p>Available with glass and without glass options.</p><span class="price">MYR 65.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="asgscrew.png" alt="ASG dry wall screw" /></div><div class="product-body"><h3>ASG Dry Wall Screw</h3><p>Durable screw for drywall and ceiling installation.</p><span class="price">MYR 12.50</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="metalstud.png" alt="Metal stud" /></div><div class="product-body"><h3>Metal Stud</h3><p>Metal stud framing.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="besisiling.png" alt="Besi siling" /></div><div class="product-body"><h3>Besi Siling</h3><p>Ceiling metal framing material for installation works.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="getahpintu.png" alt="Getah pintu" /></div><div class="product-body"><h3>Getah Pintu</h3><p>Can be used for door and glass applications.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product"><div class="product-img"><img src="doorjamb.png" alt="Aluminium door jamb" /></div><div class="product-body"><h3>Aluminium Door Jamb</h3><p>Durable aluminium jamb for door installation.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+          </div>
+        </div>
+        <div class="bulk-cta">
+          <div class="bulk-icon"><i data-lucide="clipboard-list"></i></div>
+          <div>
+            <h2>Bulk Order or Project Inquiry?</h2>
+            <p>Get the best price for your project needs.<br />Contact us today for a tailored quotation.</p>
+          </div>
+          <div class="bulk-actions">
+            <a class="btn btn-red" href="#contact">Get Free Quotation</a>
+            <a class="btn btn-dark" href="https://wa.me/60133008130?text=Hi%20ACE%2C%20I%20would%20like%20to%20enquire%20about%20your%20products."><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z" fill="currentColor"/></svg>WhatsApp Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Our Projects</div>
+            <h2>Our Completed Projects</h2>
+            <p>We take pride in delivering quality workmanship and excellent results.</p>
+          </div>
+        </div>
+        <div class="tabs">
+          <div class="tab active">All</div>
+          <div class="tab">Commercial</div>
+          <div class="tab">Office</div>
+          <div class="tab">Retail</div>
+          <div class="tab">Residential</div>
+          <div class="tab">Industrial</div>
+        </div>
+        <div class="project-grid">
+          <article class="project"><img src="clinicrenovation.png" alt="Clinic renovation" /><div class="project-title"><strong>Clinic Renovation</strong><span>Kuala Lumpur</span></div></article>
+          <article class="project"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Modern office partition" /><div class="project-title"><strong>Modern Office Partition</strong><span>Petaling Jaya</span></div></article>
+          <article class="project"><img src="tadikarenovation.png" alt="Tadika renovation gypsum" /><div class="project-title"><strong>Tadika Renovation (GYPSUM)</strong><span>Shah Alam</span></div></article>
+          <article class="project"><img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=900&q=80" alt="Sultan lobby ceiling" /><div class="project-title"><strong>Sultan Lobby Ceiling</strong><span>Kuala Lumpur</span></div></article>
+          <article class="project"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Meeting room partition" /><div class="project-title"><strong>Meeting Room Partition</strong><span>Cyberjaya</span></div></article>
+          <article class="project"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80" alt="Retail shop ceiling" /><div class="project-title"><strong>Retail Shop Ceiling</strong><span>Subang Jaya</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta project-cta">
+      <div class="wrap">
+        <div class="project-cta-icon"><i data-lucide="file-pen-line"></i></div>
+        <div>
+          <h2>Have A Project In Mind?</h2>
+          <p>Let us help you bring your ideas to life.</p>
+        </div>
+        <div class="project-cta-actions">
+          <a class="btn" href="#contact">Get Free Quotation</a>
+          <a class="whatsapp" href="https://wa.me/60124558130?text=Hi%20ACE%2C%20I%20would%20like%20to%20discuss%20a%20project%20and%20request%20a%20quotation." aria-label="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="wrap">
+        <div class="process-layout">
+          <div class="process-copy">
+            <div class="eyebrow">Our Process</div>
+            <h2>From Concept to Completion We Make It Simple</h2>
+            <p class="lead">We follow a proven process to ensure every project is delivered with quality, safety, and complete satisfaction.</p>
+            <div class="process-timeline">
+              <article class="process-step">
+                <div class="num">01</div>
+                <div class="process-icon"><i data-lucide="phone"></i></div>
+                <div><h3>Contact Us</h3><p>Reach out to us via phone, WhatsApp, or our website. Tell us about your project needs.</p></div>
+              </article>
+              <article class="process-step">
+                <div class="num">02</div>
+                <div class="process-icon"><i data-lucide="clipboard-list"></i></div>
+                <div><h3>Site Inspection</h3><p>We visit your site to understand the space, assess requirements, and take measurements.</p></div>
+              </article>
+              <article class="process-step">
+                <div class="num">03</div>
+                <div class="process-icon"><i data-lucide="file-pen-line"></i></div>
+                <div><h3>Quotation</h3><p>We provide a detailed quotation with clear scope, pricing, and timeline.</p></div>
+              </article>
+              <article class="process-step">
+                <div class="num">04</div>
+                <div class="process-icon"><i data-lucide="layers"></i></div>
+                <div><h3>Material Preparation</h3><p>We prepare and deliver quality materials to ensure smooth installation.</p></div>
+              </article>
+              <article class="process-step">
+                <div class="num">05</div>
+                <div class="process-icon"><i data-lucide="wrench"></i></div>
+                <div><h3>Installation</h3><p>Our skilled team performs the installation with precision, safety, and efficiency.</p></div>
+              </article>
+              <article class="process-step">
+                <div class="num">06</div>
+                <div class="process-icon"><i data-lucide="shield-check"></i></div>
+                <div><h3>Project Completion</h3><p>We conduct final inspection, ensure quality standards, and handover on time.</p></div>
+              </article>
+            </div>
+          </div>
+          <div class="process-photo">
+            <img src="https://plus.unsplash.com/premium_photo-1683121023018-067bccddcb63?auto=format&fit=crop&w=1100&q=90" alt="Ceiling installation work" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Testimonials</div>
+            <h2>What Our Clients Say</h2>
+            <p>We value our clients and always deliver the best results.</p>
+          </div>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial"><div class="quote">&ldquo;</div><p>We did an amazing job on our office renovation. The ceiling and partition work is excellent and the team is very professional.</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Ahmad Faizal" /></div><div><strong>Ahmad Faizal</strong><span>Project Manager</span></div></div></article>
+          <article class="testimonial"><div class="quote">&ldquo;</div><p>Very satisfied with their plaster ceiling work. Smooth finish and completed on time. Highly recommended.</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Nur Hidayah" /></div><div><strong>Nur Hidayah</strong><span>Home Owner</span></div></div></article>
+          <article class="testimonial"><div class="quote">&ldquo;</div><p>High quality materials and skilled workers. The result is beyond our expectations. We will use their service again.</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Daniel Lim" /></div><div><strong>Daniel Lim</strong><span>Retailing Shop</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stats-grid">
+        <div class="stat"><strong>500+</strong><span>Projects Completed</span></div>
+        <div class="stat"><strong>100%</strong><span>Client Satisfaction</span></div>
+        <div class="stat"><strong>10+</strong><span>Years Experience</span></div>
+        <div class="stat"><strong>4.9</strong><span>Average Rating</span></div>
+      </div>
+    </div>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contact-layout">
+          <div>
+            <div class="eyebrow">Contact Us</div>
+            <h2>Get In Touch With Us</h2>
+            <p class="lead">We are here to help. Reach out to us for any inquiries or quotation.</p>
+            <div class="contact-list">
+              <div class="contact-item"><div class="iconbox" data-lucide="phone"></div><div><strong>Phone / WhatsApp</strong>+6013 300 8130</div></div>
+              <div class="contact-item"><div class="iconbox" data-lucide="mail"></div><div><strong>Email</strong>info@aceinterior.com.my</div></div>
+              <div class="contact-item"><div class="iconbox" data-lucide="map-pin"></div><div><strong>Office Address</strong>PT46046D, JALAN BUKIT CERAKAH, BUKIT KAPAR, 42200 KAPAR, Selangor.</div></div>
+              <div class="contact-item"><div class="iconbox" data-lucide="clock"></div><div><strong>Business Hours</strong>Monday - Saturday<br />8:30 AM - 6:00 PM</div></div>
+            </div>
+          </div>
+          <form class="contact-form">
+            <input type="text" placeholder="Your Name" />
+            <input type="email" placeholder="Your Email" />
+            <input type="tel" placeholder="Your Phone" />
+            <input type="text" placeholder="Subject" />
+            <textarea placeholder="Your Message"></textarea>
+            <button class="btn btn-red" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+      <div class="map">
+        <div class="map-visual">
+          <div class="map-tiles" aria-hidden="true">
+            <img src="https://tile.openstreetmap.org/14/12812/8039.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12813/8039.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12814/8039.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12815/8039.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12816/8039.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12817/8039.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12812/8040.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12813/8040.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12814/8040.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12815/8040.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12816/8040.png" alt="" />
+            <img src="https://tile.openstreetmap.org/14/12817/8040.png" alt="" />
+          </div>
+          <div class="pin"></div>
+        </div>
+        <div class="map-card">
+          <div class="map-card-icon"><i data-lucide="map-pin"></i></div>
+          <div>
+            <strong>ABE Plaster Ceiling & Gypsum Partition</strong>
+            <p>PT46046D, JALAN BUKIT CERAKAH, BUKIT KAPAR,<br />42200 KAPAR, Selangor, Malaysia.</p>
+          </div>
+          <a class="map-directions" href="https://www.google.com/maps/search/?api=1&query=No.%2025%2C%20Jalan%20Industri%203%2F6%2C%20Taman%20Perindustrian%20Rawang%2C%2048000%20Rawang%2C%20Selangor%2C%20Malaysia" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#home">
+            <img src="logo1.png" alt="ABE Plaster & Gypsum Partition logo" />
+          </a>
+          <p>We provide professional plaster ceiling, gypsum partition and interior solutions with high standards and great results.</p>
+          <div class="social">
+            <a href="https://www.facebook.com/p/Abe-Plaster-Ceiling-Gypsum-Partition-HQ-100083336889012" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="YouTube">yt</a>
+          </div>
+        </div>
+        <div><h3>Services</h3><ul><li>Plaster Ceiling</li><li>Gypsum Ceiling</li><li>Partition Wall</li><li>Office Partition</li><li>Commercial Ceiling</li><li>Renovation Work</li></ul></div>
+        <div><h3>Quick Links</h3><ul><li>About Us</li><li>Projects</li><li>Products</li><li>Process</li><li>Testimonials</li><li>Contact</li></ul></div>
+        <div><h3>Products</h3><ul><li>Ceiling Materials</li><li>Partition & Frame</li><li>Doors & Accessories</li><li>Insulation</li><li>Tools & Others</li></ul></div>
+        <div><h3>Contact Info</h3><ul><li>+6013 300 8130</li><li>info@aceinterior.com.my</li><li>42200 Kapar, Selangor</li></ul></div>
+      </div>
+      <div class="copyright">
+        <span>&copy; 2026 ABE Plaster & Gypsum Partition. All Rights Reserved.</span>
+        <span>Privacy Policy &nbsp;&nbsp;&nbsp; Terms & Conditions</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="inquiry-float" id="inquiryFloat" aria-live="polite">
+    <div class="inquiry-clip" aria-hidden="true">
+      <i data-lucide="clipboard-list"></i>
+      <span class="inquiry-count" id="inquiryCount">0</span>
+    </div>
+    <div class="inquiry-copy">
+      <strong>Inquiry List</strong>
+      <span id="inquirySummary">No products added</span>
+    </div>
+    <a class="inquiry-whatsapp" id="inquiryWhatsapp" href="https://wa.me/60133008130" aria-label="Send inquiry through WhatsApp">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z"/></svg>
+    </a>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    try {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    } catch (error) {}
+  </script>
+  <script>
+    window.navScriptStarted = true;
+
+    var navMenuLinks = document.querySelectorAll('.links a, .mobile-links a');
+    var navSectionIds = ['home', 'products', 'about', 'services', 'shop', 'projects', 'testimonials', 'contact'];
+
+    function setActiveNav(id) {
+      for (var i = 0; i < navMenuLinks.length; i += 1) {
+        var link = navMenuLinks[i];
+        var href = link.getAttribute('href');
+        var isProductLink = id === 'products' && href === '#shop';
+        if (href === '#' + id || isProductLink) {
+          link.className = 'active';
+        } else {
+          link.className = '';
+        }
+      }
+    }
+
+    function updateActiveNav() {
+      var scrollPosition = window.pageYOffset + 120;
+      var current = 'home';
+
+      for (var i = 0; i < navSectionIds.length; i += 1) {
+        var section = document.getElementById(navSectionIds[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          current = section.id === 'shop' ? 'products' : section.id;
+        }
+      }
+
+      if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 4) {
+        current = 'contact';
+      }
+
+      setActiveNav(current);
+    }
+
+    for (var i = 0; i < navMenuLinks.length; i += 1) {
+      navMenuLinks[i].onclick = function() {
+        var href = this.getAttribute('href');
+        if (href && href.charAt(0) === '#') {
+          setActiveNav(href.slice(1));
+        }
+      };
+    }
+
+    window.updateActiveNav = updateActiveNav;
+    window.onscroll = updateActiveNav;
+    window.onresize = updateActiveNav;
+    updateActiveNav();
+
+    var hamburgerButton = document.querySelector('.hamburger');
+    var drawerCloseItems = document.querySelectorAll('[data-drawer-close]');
+    var mobileDrawerLinks = document.querySelectorAll('.mobile-links a');
+
+    function openDrawer() {
+      document.body.classList.add('drawer-open');
+      if (hamburgerButton) {
+        hamburgerButton.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function closeDrawer() {
+      document.body.classList.remove('drawer-open');
+      if (hamburgerButton) {
+        hamburgerButton.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (hamburgerButton) {
+      hamburgerButton.onclick = openDrawer;
+    }
+
+    for (var closeIndex = 0; closeIndex < drawerCloseItems.length; closeIndex += 1) {
+      drawerCloseItems[closeIndex].onclick = closeDrawer;
+    }
+
+    for (var mobileIndex = 0; mobileIndex < mobileDrawerLinks.length; mobileIndex += 1) {
+      mobileDrawerLinks[mobileIndex].onclick = function() {
+        closeDrawer();
+      };
+    }
+
+    document.onkeydown = function(event) {
+      event = event || window.event;
+      if (event.key === 'Escape' || event.keyCode === 27) {
+        closeDrawer();
+      }
+    };
+
+    var inquiryProducts = [];
+    var inquiryFloat = document.getElementById('inquiryFloat');
+    var inquiryCount = document.getElementById('inquiryCount');
+    var inquirySummary = document.getElementById('inquirySummary');
+    var inquiryWhatsapp = document.getElementById('inquiryWhatsapp');
+    var inquiryButtons = document.querySelectorAll('.shop .catalog .product .btn');
+
+    function updateInquiryFloat() {
+      var count = inquiryProducts.length;
+      var message = 'Hi, I would like to enquire about these products:\n';
+
+      inquiryCount.innerHTML = count;
+      inquirySummary.innerHTML = count === 1 ? '1 product added' : count + ' products added';
+
+      for (var i = 0; i < inquiryProducts.length; i += 1) {
+        message += (i + 1) + '. ' + inquiryProducts[i] + '\n';
+      }
+
+      inquiryWhatsapp.setAttribute('href', 'https://wa.me/60133008130?text=' + encodeURIComponent(message));
+
+      if (count > 0) {
+        inquiryFloat.classList.add('show');
+      } else {
+        inquiryFloat.classList.remove('show');
+      }
+    }
+
+    for (var inquiryIndex = 0; inquiryIndex < inquiryButtons.length; inquiryIndex += 1) {
+      inquiryButtons[inquiryIndex].onclick = function(event) {
+        event.preventDefault();
+
+        var productCard = this.closest ? this.closest('.product') : null;
+        var productTitle = productCard ? productCard.querySelector('h3') : null;
+        var productName = productTitle ? productTitle.innerHTML.replace(/<[^>]*>/g, '').trim() : 'Product';
+
+        if (inquiryProducts.indexOf(productName) === -1) {
+          inquiryProducts.push(productName);
+        }
+
+        this.innerHTML = 'Added To Inquiry';
+        this.classList.add('added');
+        updateInquiryFloat();
+      };
+    }
+  </script>
+</body>
+</html>
