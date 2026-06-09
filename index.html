@@ -389,6 +389,18 @@
       font-weight: 900;
       text-transform: uppercase;
       margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      letter-spacing: .2px;
+    }
+
+    .eyebrow::after {
+      content: "";
+      width: 76px;
+      height: 1px;
+      background: currentColor;
+      opacity: .85;
     }
 
     .hero .eyebrow {
@@ -397,6 +409,10 @@
       margin-bottom: 16px;
       font-weight: 800;
       letter-spacing: .2px;
+    }
+
+    .hero .eyebrow::after {
+      content: none;
     }
 
     h1,
@@ -576,6 +592,10 @@
 
     section {
       padding: 80px 0;
+    }
+
+    main > section + section {
+      border-top: 1px solid #e7e7e7;
     }
 
     .home-services {
@@ -777,105 +797,6 @@
       background: #fff;
     }
 
-    .about-hero {
-      background: #050505;
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .about-hero-grid {
-      height: 285px;
-      display: grid;
-      grid-template-columns: 0.78fr 1.22fr;
-      align-items: stretch;
-    }
-
-    .about-hero-copy {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-right: 54px;
-      background:
-        linear-gradient(115deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.91) 62%, rgba(0, 0, 0, 0.56) 100%),
-        radial-gradient(circle at 92% 50%, rgba(255, 255, 255, 0.07), transparent 38%);
-    }
-
-    @media (min-width: 1051px) {
-      .about-hero,
-      .about-hero-grid,
-      .about-hero-copy {
-        background: #010101;
-      }
-    }
-
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 22px;
-      font-size: 13px;
-      font-weight: 800;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .breadcrumb a {
-      color: #fff;
-    }
-
-    .breadcrumb span:last-child {
-      color: var(--red);
-    }
-
-    .about-hero h1 {
-      position: relative;
-      margin: 0 0 26px;
-      font-family: Inter, Arial, sans-serif;
-      font-size: clamp(42px, 4vw, 58px);
-      line-height: 0.95;
-      letter-spacing: 0;
-      text-transform: none;
-      color: #fff;
-    }
-
-    .about-hero h1::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -15px;
-      width: 64px;
-      height: 3px;
-      background: var(--red);
-    }
-
-    .about-hero p {
-      max-width: 470px;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 14px;
-      line-height: 1.7;
-      font-weight: 600;
-    }
-
-    .about-hero-image {
-      position: relative;
-      min-width: 0;
-      overflow: hidden;
-      border-top-left-radius: 155px;
-      border-bottom-left-radius: 155px;
-    }
-
-    .about-hero-image::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 3px;
-      background: var(--red);
-      z-index: 2;
-    }
-
-    .about-hero-image img,
     .about-photo img {
       width: 100%;
       height: 100%;
@@ -884,7 +805,7 @@
     }
 
     .about-main {
-      padding: 50px 0 58px;
+      padding: 92px 0 58px;
       background: #fff;
     }
 
@@ -1122,51 +1043,8 @@
       background: #fff;
     }
 
-    .services-banner {
-      height: 300px;
-      color: #fff;
-      background:
-        linear-gradient(90deg, rgba(0, 0, 0, .94) 0%, rgba(0, 0, 0, .76) 37%, rgba(0, 0, 0, .12) 100%),
-        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1700&q=90") center/cover;
-    }
-
-    .services-banner .wrap {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .services-banner h2 {
-      margin: 0 0 22px;
-      color: #fff;
-      font-family: Inter, Arial, sans-serif;
-      font-size: clamp(46px, 4.4vw, 64px);
-      line-height: 1;
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    .services-banner h2::after {
-      content: "";
-      display: block;
-      width: 68px;
-      height: 3px;
-      margin-top: 16px;
-      background: var(--red);
-    }
-
-    .services-banner p {
-      max-width: 470px;
-      margin: 0;
-      color: rgba(255, 255, 255, .86);
-      font-size: 15px;
-      line-height: 1.65;
-      font-weight: 600;
-    }
-
     .services-content {
-      padding: 54px 0 46px;
+      padding: 92px 0 46px;
     }
 
     .services-intro {
@@ -2409,23 +2287,8 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .about-hero-grid,
       .about-main-grid {
         grid-template-columns: 1fr;
-      }
-
-      .about-hero-grid {
-        height: auto;
-      }
-
-      .about-hero-copy {
-        min-height: 260px;
-        padding: 48px 0;
-      }
-
-      .about-hero-image {
-        height: 260px;
-        border-radius: 0;
       }
 
       .about-main-grid {
@@ -2737,10 +2600,6 @@
         grid-template-columns: 1fr;
       }
 
-      .services-banner {
-        height: 260px;
-      }
-
       .services-content {
         padding: 42px 0 40px;
       }
@@ -2953,18 +2812,8 @@
         padding: 42px 0 48px;
       }
 
-      .about-main-grid,
-      .about-hero-grid {
+      .about-main-grid {
         width: calc(100% - 32px);
-      }
-
-      .about-hero-copy {
-        min-height: 250px;
-        padding: 40px 0;
-      }
-
-      .about-hero h1 {
-        font-size: 42px;
       }
 
       .about-photo {
@@ -3134,21 +2983,10 @@
     </div>
 
     <section class="about" id="about">
-      <div class="about-hero">
-        <div class="wrap about-hero-grid">
-          <div class="about-hero-copy">
-            <h1>About Us</h1>
-            <p>We build better spaces with quality workmanship, premium materials, and a commitment to excellence.</p>
-          </div>
-          <div class="about-hero-image">
-            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1500&q=90" alt="Modern glass office interior" />
-          </div>
-        </div>
-      </div>
       <div class="about-main">
         <div class="about-main-grid">
           <div class="about-copy">
-            <div class="eyebrow">About </div>
+            <div class="eyebrow">About Us</div>
             <h2>We Build Better Spaces With Quality & <span class="red">Professionalism</span></h2>
             <p class="lead">ABE Plaster Ceiling & Gypsum Partition is a trusted interior contracting company in Malaysia, specializing in ceiling and partition installation for residential, commercial, and industrial projects.</p>
             <p class="lead">We are committed to delivering high-quality workmanship, using premium materials, and ensuring every project is completed on time and within budget.</p>
@@ -3167,12 +3005,6 @@
     </section>
 
     <section class="services-page" id="services">
-      <div class="services-banner">
-        <div class="wrap">
-          <h2>Services</h2>
-          <p>High quality ceiling and partition solutions designed for every space and built to last.</p>
-        </div>
-      </div>
       <div class="services-content">
         <div class="wrap">
           <div class="services-intro">
