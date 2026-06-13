@@ -11,16 +11,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #070707;
-      --dark: #111111;
-      --panel: #171717;
+      --black: #15171d;
+      --dark: #23262d;
+      --panel: #ffffff;
       --red: #e50914;
       --red-dark: #b90009;
-      --text: #151515;
-      --muted: #6f6f6f;
-      --line: #e2e2e2;
-      --soft: #f6f6f6;
+      --text: #17191f;
+      --muted: #6b7280;
+      --line: #e8e5df;
+      --soft: #faf7f2;
       --white: #ffffff;
+      --cream: #f5f5f5;
+      --shadow: 0 18px 48px rgba(22, 24, 29, .10);
     }
 
     * {
@@ -36,7 +38,7 @@
       margin: 0;
       font-family: Inter, Arial, sans-serif;
       color: var(--text);
-      background: var(--white);
+      background: var(--cream);
       letter-spacing: 0;
     }
 
@@ -57,8 +59,10 @@
       top: 0;
       z-index: 50;
       background: #010101;
-      border-bottom: 1px solid #262626;
+      border-bottom: 1px solid #242424;
       height: 82px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+      backdrop-filter: blur(14px);
     }
 
     .nav {
@@ -68,14 +72,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 26px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      color: var(--white);
+      color: #fff;
       font-weight: 900;
       line-height: 1;
     }
@@ -89,8 +93,8 @@
     .links {
       display: flex;
       align-items: center;
-      gap: 34px;
-      color: #d8d8d8;
+      gap: 26px;
+      color: #f1f1f1;
       font-size: 13px;
       font-weight: 700;
     }
@@ -159,7 +163,7 @@
       position: fixed;
       inset: 0;
       z-index: 90;
-      background: rgba(0, 0, 0, .68);
+      background: rgba(10, 12, 16, .54);
       opacity: 0;
       pointer-events: none;
       transition: opacity .25s ease;
@@ -173,12 +177,12 @@
       width: min(80vw, 340px);
       height: 100vh;
       padding: 28px 26px;
-      background: #050505;
+      background: #ffffff;
       color: #fff;
       transform: translateX(100%);
       visibility: hidden;
       transition: transform .28s ease;
-      box-shadow: -20px 0 55px rgba(0,0,0,.35);
+      box-shadow: -20px 0 55px rgba(0,0,0,.18);
       display: flex;
       flex-direction: column;
       gap: 28px;
@@ -201,9 +205,9 @@
       width: 46px;
       height: 46px;
       padding: 0;
-      border: 1px solid #333;
+      border: 1px solid #e4e4e4;
       background: transparent;
-      color: #fff;
+      color: #111;
       cursor: pointer;
       display: grid;
       place-items: center;
@@ -220,8 +224,8 @@
       min-height: 50px;
       display: flex;
       align-items: center;
-      border-bottom: 1px solid #1d1d1d;
-      color: #fff;
+      border-bottom: 1px solid #ececec;
+      color: #17191f;
       font-size: 15px;
       font-weight: 800;
     }
@@ -284,6 +288,7 @@
     .btn-red {
       background: var(--red);
       color: var(--white);
+      box-shadow: 0 10px 24px rgba(229, 9, 20, .18);
     }
 
     .btn-red:hover {
@@ -291,9 +296,9 @@
     }
 
     .btn-dark {
-      background: transparent;
-      color: var(--white);
-      border-color: rgba(255,255,255,.45);
+      background: #fff;
+      color: var(--text);
+      border-color: #dedbd4;
     }
 
     .btn-light {
@@ -305,8 +310,9 @@
     .whatsapp {
       width: 46px;
       height: 46px;
-      border: 1px solid #3d3d3d;
-      color: #ffffff;
+      border: 1px solid #ddd8cf;
+      background: #fff;
+      color: #111;
       display: grid;
       place-items: center;
       font-weight: 900;
@@ -330,18 +336,22 @@
     .hero {
       min-height: 500px;
       padding: 0;
-      background: var(--black);
-      color: var(--white);
-      border-bottom: 1px solid #202020;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(229, 9, 20, .045), transparent 28%),
+        linear-gradient(135deg, #f5f5f5 0%, #f8f8f8 56%, #eeeeee 100%);
+      color: var(--text);
+      border-bottom: 1px solid #dedede;
     }
 
     .hero-shell {
-      width: min(1320px, 100%);
+      width: min(1320px, calc(100% - 64px));
       height: 500px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: stretch;
+      gap: 44px;
+      padding: 42px 0;
     }
 
     .wrap {
@@ -352,28 +362,25 @@
     .hero-copy {
       width: 100%;
       max-width: none;
-      padding: 56px 64px;
+      padding: 34px 0 34px 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.98), rgba(0,0,0,.92)),
-        repeating-linear-gradient(90deg, transparent 0 72px, rgba(255,255,255,.025) 72px 73px);
+      background: transparent;
     }
 
     .hero-image {
       position: relative;
-      min-height: 500px;
+      min-height: 416px;
       overflow: hidden;
-      background: #111;
+      background: #fff;
+      border: 1px solid #eee7de;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
     }
 
     .hero-image::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,.14), rgba(0,0,0,0) 38%);
-      pointer-events: none;
+      content: none;
     }
 
     .hero-image img {
@@ -404,7 +411,7 @@
     }
 
     .hero .eyebrow {
-      color: #ffffff;
+      color: var(--red);
       font-size: 14px;
       margin-bottom: 16px;
       font-weight: 800;
@@ -435,7 +442,7 @@
       font-family: Anton, Oswald, "Arial Narrow", sans-serif;
       font-size: clamp(48px, 3.85vw, 58px);
       line-height: 1.04;
-      max-width: 640px;
+      max-width: 620px;
       margin-bottom: 20px;
       letter-spacing: 0;
       font-weight: 400;
@@ -446,7 +453,7 @@
     }
 
     .hero p {
-      color: #d7d7d7;
+      color: #5f6673;
       max-width: 560px;
       line-height: 1.6;
       font-size: 16px;
@@ -474,13 +481,14 @@
 
     .hero .btn-dark {
       gap: 10px;
+      box-shadow: 0 8px 18px rgba(15, 18, 24, .06);
     }
 
     .stats {
-      background: #080808;
-      color: var(--white);
-      border-top: 1px solid #2b2b2b;
-      border-bottom: 1px solid #2b2b2b;
+      background: #fff;
+      color: var(--text);
+      border-top: 1px solid #ece7de;
+      border-bottom: 1px solid #ece7de;
     }
 
     .stats-grid {
@@ -493,11 +501,11 @@
     .stat {
       padding: 30px 16px;
       text-align: center;
-      border-left: 1px solid #282828;
+      border-left: 1px solid #ebe7df;
     }
 
     .stat:last-child {
-      border-right: 1px solid #282828;
+      border-right: 1px solid #ebe7df;
     }
 
     .stat strong {
@@ -508,24 +516,28 @@
     }
 
     .stat span {
-      color: #a5a5a5;
+      color: #6b7280;
       font-size: 12px;
       font-weight: 600;
     }
 
     .hero-stats {
-      background: linear-gradient(90deg, #050505, #111 50%, #050505);
-      color: #fff;
-      border-top: 1px solid #202020;
-      border-bottom: 1px solid #202020;
+      background: var(--cream);
+      color: var(--text);
+      border-top: 0;
+      border-bottom: 1px solid #dedede;
+      padding: 0 0 44px;
     }
 
     @media (min-width: 1051px) {
       .hero,
-      .hero-shell,
-      .hero-copy,
       .hero-stats {
-        background: #010101;
+        background: #f5f5f5;
+      }
+
+      .hero-shell,
+      .hero-copy {
+        background: transparent;
       }
 
       .hero,
@@ -541,6 +553,10 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      background: #fff;
+      border: 1px solid #ece5db;
+      border-radius: 5px;
+      box-shadow: 0 14px 38px rgba(20, 24, 32, .06);
     }
 
     .hero-stat {
@@ -559,7 +575,7 @@
       top: 20px;
       bottom: 20px;
       width: 1px;
-      background: #2f2f2f;
+      background: #e6e1d8;
     }
 
     .hero-stat .iconbox {
@@ -586,7 +602,7 @@
     }
 
     .hero-stat span {
-      color: #d0d0d0;
+      color: #5f6673;
       font-size: 14px;
     }
 
@@ -781,13 +797,6 @@
 
     .product-body {
       padding: 18px;
-    }
-
-    .price {
-      display: block;
-      margin-top: 14px;
-      font-size: 13px;
-      font-weight: 900;
     }
 
     .about {
@@ -1199,11 +1208,12 @@
 
     .services-cta {
       margin-top: 28px;
-      color: #fff;
-      background:
-        linear-gradient(118deg, #070707 0 49%, #ed0712 49.2% 100%);
+      color: var(--text);
+      background: #fff;
+      border: 1px solid #ece5db;
       border-radius: 4px;
       overflow: hidden;
+      box-shadow: 0 14px 34px rgba(20, 24, 32, .06);
     }
 
     .services-cta-inner {
@@ -1217,7 +1227,7 @@
 
     .services-cta h2 {
       margin: 0 0 5px;
-      color: #fff;
+      color: var(--text);
       font-size: 25px;
       line-height: 1.1;
       text-transform: uppercase;
@@ -1225,7 +1235,7 @@
 
     .services-cta p {
       margin: 0;
-      color: rgba(255, 255, 255, .78);
+      color: #6b7280;
       font-size: 13px;
       line-height: 1.5;
     }
@@ -1240,7 +1250,7 @@
     .services-cta .btn {
       min-height: 44px;
       padding: 0 24px;
-      border-color: rgba(255, 255, 255, .35);
+      border-color: #e4ded3;
       font-size: 11px;
     }
 
@@ -1252,20 +1262,33 @@
     .services-cta .whatsapp {
       width: 44px;
       height: 44px;
-      border-color: rgba(255, 255, 255, .35);
-    }
-
-    .shop-hero {
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.72) 46%, rgba(0,0,0,.18) 100%),
-        url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1700&q=85") center/cover;
-      color: var(--white);
-      padding: 76px 0;
+      border-color: #e4ded3;
     }
 
     .shop {
-      background: #f7f7f7;
-      padding: 28px 0 48px;
+      background: #fbf8f3;
+      padding: 92px 0 48px;
+    }
+
+    .shop-intro {
+      max-width: 780px;
+      margin-bottom: 30px;
+    }
+
+    .shop-intro h2 {
+      margin: 0 0 13px;
+      font-size: clamp(34px, 3.1vw, 46px);
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .shop-intro p {
+      max-width: 720px;
+      margin: 0;
+      color: #4f5865;
+      font-size: 14px;
+      line-height: 1.75;
     }
 
     .filters {
@@ -1505,12 +1528,6 @@
       line-height: 1.45;
     }
 
-    .shop .price {
-      color: var(--red);
-      font-size: 16px;
-      margin-top: 12px;
-    }
-
     .shop .product .btn {
       background: #050505;
       color: #fff;
@@ -1528,13 +1545,15 @@
       margin-top: 28px;
       min-height: 126px;
       padding: 0 46px;
-      background: linear-gradient(90deg, #070707, #171717);
-      color: #fff;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #ece5db;
       border-radius: 5px;
       display: grid;
       grid-template-columns: auto 1fr auto;
       gap: 28px;
       align-items: center;
+      box-shadow: 0 16px 38px rgba(20, 24, 32, .07);
     }
 
     .bulk-icon {
@@ -1552,13 +1571,13 @@
     }
 
     .bulk-cta h2 {
-      color: #fff;
+      color: var(--text);
       font-size: 24px;
       margin: 0 0 8px;
     }
 
     .bulk-cta p {
-      color: #d6d6d6;
+      color: #6b7280;
       font-size: 13px;
       line-height: 1.5;
       margin: 0;
@@ -1583,7 +1602,7 @@
     .bulk-actions .btn-dark {
       min-height: 50px;
       min-width: 170px;
-      border-color: rgba(255,255,255,.35);
+      border-color: #e4ded3;
       border-radius: 2px;
       font-size: 12px;
     }
@@ -1684,6 +1703,150 @@
     .projects {
       background: var(--white);
       padding-bottom: 18px;
+    }
+
+    .branches {
+      background: #f5f5f5;
+    }
+
+    .branch-head {
+      max-width: 760px;
+      margin-bottom: 32px;
+    }
+
+    .branch-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 3.1vw, 46px);
+      line-height: 1.1;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .branch-head p {
+      max-width: 680px;
+      margin: 0;
+      color: #59616d;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .branch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .branch-card {
+      overflow: hidden;
+      border: 1px solid #ece5db;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 18px 44px rgba(20, 24, 32, .075);
+    }
+
+    .branch-image {
+      position: relative;
+      height: 285px;
+      background: #f0ede7;
+      overflow: hidden;
+    }
+
+    .branch-image::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 48%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.56));
+      pointer-events: none;
+    }
+
+    .branch-badge {
+      position: absolute;
+      left: 22px;
+      bottom: 20px;
+      z-index: 1;
+      min-height: 34px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 3px;
+      background: var(--red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      box-shadow: 0 12px 24px rgba(229, 9, 20, .22);
+    }
+
+    .branch-badge svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2.2;
+    }
+
+    .branch-body {
+      padding: 28px;
+    }
+
+    .branch-body h3 {
+      margin: 0 0 10px;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .branch-body p {
+      margin: 0 0 20px;
+      color: #626a76;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .branch-meta {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .branch-meta-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: #363b44;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .branch-meta-item .iconbox {
+      width: 38px;
+      height: 38px;
+      margin: 0;
+      border-color: #ffd0d4;
+      background: #fff8f8;
+    }
+
+    .branch-meta-item strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #12151b;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .branch-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .branch-actions .btn {
+      min-height: 44px;
+      padding: 0 18px;
+      font-size: 11px;
     }
 
     .tabs {
@@ -1915,30 +2078,31 @@
     }
 
     .project-cta {
-      background: #fff;
+      background: #fbf8f3;
       padding: 0 0 34px;
     }
 
     .project-cta .wrap {
       min-height: 76px;
       padding: 0 48px;
-      background: linear-gradient(90deg, #e60009 0%, #e50914 58%, #d80008 100%);
-      color: #fff;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #ece5db;
       border-radius: 4px;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 28px;
-      box-shadow: 0 14px 34px rgba(229, 9, 20, .18);
+      box-shadow: 0 14px 34px rgba(20, 24, 32, .07);
     }
 
     .project-cta-icon {
       width: 44px;
       height: 44px;
-      border: 1px solid rgba(255,255,255,.45);
+      border: 1px solid #ffd0d4;
       display: grid;
       place-items: center;
-      color: #fff;
+      color: var(--red);
     }
 
     .project-cta-icon svg {
@@ -1952,11 +2116,11 @@
       font-size: 21px;
       line-height: 1.15;
       text-transform: uppercase;
-      color: #fff;
+      color: var(--text);
     }
 
     .project-cta p {
-      color: #fff;
+      color: #6b7280;
       font-size: 12px;
       line-height: 1.35;
       margin: 0;
@@ -1971,8 +2135,8 @@
     .project-cta .btn {
       min-height: 44px;
       min-width: 190px;
-      border-color: rgba(255,255,255,.45);
-      background: transparent;
+      border-color: var(--red);
+      background: var(--red);
       color: #fff;
       font-size: 11px;
     }
@@ -1986,12 +2150,12 @@
       width: 44px;
       height: 44px;
       border-color: rgba(0,0,0,.18);
-      background: #111;
+      background: #fff;
       color: #25d366;
     }
 
     .contact {
-      background: #f7f7f7;
+      background: #fbf8f3;
       padding-bottom: 0;
     }
 
@@ -2049,137 +2213,11 @@
       width: 100%;
     }
 
-    .map {
-      width: min(1320px, calc(100% - 64px));
-      margin: 62px auto 0;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid #e1e1e1;
-      border-radius: 6px;
-      background: #fff;
-      box-shadow: 0 16px 38px rgba(15, 20, 30, .05);
-    }
-
-    .map-visual {
-      position: relative;
-      height: 260px;
-      overflow: hidden;
-      background: #eef0f2;
-    }
-
-    .map-visual iframe {
-      width: 100%;
-      height: 100%;
-      display: block;
-      border: 0;
-      filter: grayscale(1) saturate(.18) contrast(.96) brightness(1.12);
-      transform: scale(1.04);
-      transform-origin: center;
-    }
-
-    .map-tiles {
-      position: absolute;
-      inset: -8px;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      opacity: .68;
-      filter: grayscale(1) saturate(.12) contrast(.92) brightness(1.12);
-    }
-
-    .map-tiles img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .map-card {
-      position: relative;
-      min-height: 112px;
-      background: #fff;
-      padding: 26px 28px;
-      border-top: 1px solid #e8e8e8;
-      display: grid;
-      grid-template-columns: 56px 1fr auto;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .map-card-icon {
-      width: 46px;
-      height: 46px;
-      display: grid;
-      place-items: center;
-      border-radius: 4px;
-      background: #fff1f2;
-      color: var(--red);
-    }
-
-    .map-card-icon svg {
-      width: 26px;
-      height: 26px;
-      stroke-width: 2;
-    }
-
-    .map-card strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #111;
-      font-size: 14px;
-      line-height: 1.2;
-      font-weight: 900;
-    }
-
-    .map-card p {
-      margin: 0;
-      color: #252525;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .map-directions {
-      min-height: 44px;
-      padding: 0 20px;
-      border: 1px solid #ffb7bd;
-      color: var(--red);
-      background: #fff;
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .map-directions::after {
-      content: "\2192";
-      margin-left: 10px;
-    }
-
-    .pin {
-      position: absolute;
-      left: 49%;
-      top: 38%;
-      width: 38px;
-      height: 38px;
-      background: var(--red);
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      box-shadow: 0 8px 22px rgba(237, 7, 18, .32);
-    }
-
-    .pin::after {
-      content: "";
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #fff;
-      left: 12px;
-      top: 12px;
-    }
-
     footer {
-      background: #080808;
-      color: #fff;
+      background: #ffffff;
+      color: var(--text);
       padding: 54px 0 28px;
+      border-top: 1px solid #ece7de;
     }
 
     .footer-grid {
@@ -2187,12 +2225,12 @@
       grid-template-columns: 1.35fr repeat(4, 1fr);
       gap: 44px;
       padding-bottom: 36px;
-      border-bottom: 1px solid #262626;
+      border-bottom: 1px solid #ece7de;
     }
 
     footer p,
     footer li {
-      color: #b8b8b8;
+      color: #6b7280;
       font-size: 13px;
       line-height: 1.7;
     }
@@ -2220,10 +2258,10 @@
     .social a {
       width: 30px;
       height: 30px;
-      border: 1px solid #424242;
+      border: 1px solid #e4ded3;
       display: grid;
       place-items: center;
-      color: #fff;
+      color: var(--text);
       font-size: 12px;
       font-weight: 800;
     }
@@ -2233,7 +2271,7 @@
       display: flex;
       justify-content: space-between;
       gap: 18px;
-      color: #aaa;
+      color: #7a818d;
       font-size: 12px;
     }
 
@@ -2333,7 +2371,7 @@
         height: 70px;
         border: 1px solid rgba(255,255,255,.08);
         border-radius: 0;
-        background: rgba(1, 1, 1, .97);
+        background: rgba(1,1,1,.97);
         box-shadow: 0 10px 24px rgba(0,0,0,.22);
         backdrop-filter: blur(10px);
       }
@@ -2358,7 +2396,9 @@
       .actions .whatsapp {
         width: 44px;
         height: 44px;
-        border-color: rgba(255,255,255,.22);
+        border-color: rgba(255,255,255,.24);
+        background: transparent;
+        color: #fff;
       }
 
       .actions .whatsapp svg {
@@ -2370,6 +2410,7 @@
         width: 42px;
         height: 42px;
         gap: 6px;
+        color: #fff;
       }
 
       .hamburger span,
@@ -2434,11 +2475,11 @@
       }
 
       .hero-stat:nth-child(2n) {
-        border-left: 1px solid #242424;
+        border-left: 1px solid #ece5db;
       }
 
       .hero-stat:nth-child(n + 3) {
-        border-top: 1px solid #242424;
+        border-top: 1px solid #ece5db;
       }
 
       .hero-stat .iconbox {
@@ -2608,6 +2649,44 @@
         margin-bottom: 24px;
       }
 
+      .shop {
+        padding: 42px 0 44px;
+      }
+
+      .shop-intro {
+        margin-bottom: 24px;
+      }
+
+      .branch-head {
+        margin-bottom: 24px;
+      }
+
+      .branch-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .branch-image {
+        height: 220px;
+      }
+
+      .branch-body {
+        padding: 22px;
+      }
+
+      .branch-body h3 {
+        font-size: 22px;
+      }
+
+      .branch-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .branch-actions .btn {
+        width: 100%;
+      }
+
       .service-benefit,
       .service-benefit:first-child,
       .service-benefit:last-child {
@@ -2661,14 +2740,14 @@
         width: 100%;
         min-height: 50px;
         padding: 0 18px;
-        border-color: rgba(255,255,255,.48);
+        border-color: var(--red);
       }
 
       .services-cta .whatsapp {
         width: 100%;
         height: 50px;
-        background: #070707;
-        border-color: #070707;
+        background: #fff;
+        border-color: #e4ded3;
       }
 
       .bulk-actions,
@@ -2687,7 +2766,7 @@
         gap: 18px;
         text-align: center;
         border-radius: 6px;
-        background: linear-gradient(145deg, #060606, #171717);
+        background: #fff;
       }
 
       .bulk-icon {
@@ -2731,7 +2810,7 @@
       }
 
       .bulk-actions .btn-dark {
-        background: #0b0b0b;
+        background: #fff;
       }
 
       .project-cta {
@@ -2746,14 +2825,14 @@
         gap: 17px;
         text-align: center;
         border-radius: 6px;
-        background: #ed0712;
+        background: #fff;
       }
 
       .project-cta-icon {
         width: 52px;
         height: 52px;
         margin: 0 auto;
-        border-color: rgba(255,255,255,.45);
+        border-color: #ffd0d4;
       }
 
       .project-cta-icon svg {
@@ -2788,15 +2867,15 @@
       }
 
       .project-cta .btn {
-        background: transparent;
-        border-color: rgba(255,255,255,.48);
+        background: var(--red);
+        border-color: var(--red);
       }
 
       .project-cta .whatsapp {
         display: grid;
         place-items: center;
-        background: #080808;
-        border-color: #080808;
+        background: #fff;
+        border-color: #e4ded3;
       }
 
       .about-copy,
@@ -2834,71 +2913,6 @@
         min-height: 260px;
       }
 
-      .map {
-        width: calc(100% - 28px);
-        margin-top: 36px;
-        border: 1px solid #ededed;
-        border-radius: 8px;
-        box-shadow: 0 18px 44px rgba(0, 0, 0, .08);
-      }
-
-      .map-visual {
-        height: 172px;
-      }
-
-      .map-card {
-        grid-template-columns: 48px minmax(0, 1fr);
-        align-items: start;
-        gap: 12px;
-        min-height: 0;
-        padding: 18px 16px 16px;
-        background: linear-gradient(180deg, #fff 0%, #fffafa 100%);
-      }
-
-      .map-card-icon {
-        width: 48px;
-        height: 48px;
-        border: 1px solid #ffd7db;
-        border-radius: 8px;
-      }
-
-      .map-card-icon svg {
-        width: 24px;
-        height: 24px;
-      }
-
-      .map-card strong {
-        margin-bottom: 7px;
-        font-size: 13px;
-        line-height: 1.28;
-      }
-
-      .map-card p {
-        color: #222;
-        font-size: 12px;
-        line-height: 1.55;
-      }
-
-      .map-directions {
-        grid-column: 1 / -1;
-        width: 100%;
-        min-height: 48px;
-        margin-top: 6px;
-        padding: 0 16px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: space-between;
-        border-color: #ff9fa7;
-        border-radius: 3px;
-        background: #fff;
-        font-size: 11px;
-        letter-spacing: 0;
-      }
-
-      .map-directions::after {
-        margin-left: 14px;
-        font-size: 14px;
-      }
     }
   </style>
 </head>
@@ -2914,6 +2928,7 @@
         <a href="#services">Services</a>
         <a href="#shop">Products</a>
         <a href="#projects">Projects</a>
+        <a href="#branches">Our Branches</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="actions">
@@ -2935,6 +2950,7 @@
       <a href="#services">Services</a>
       <a href="#shop">Products</a>
       <a href="#projects">Projects</a>
+      <a href="#branches">Our Branches</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="drawer-actions">
@@ -3060,16 +3076,13 @@
       </div>
     </section>
 
-    <section class="shop-hero" id="shop">
+    <section class="shop" id="shop">
       <div class="wrap">
-        <div class="eyebrow">Our Products</div>
-        <h2>Quality Materials,<br />Built to Last</h2>
-        <p class="lead" style="color:#d7d7d7;">Explore our range of construction and interior materials for your next project.</p>
-      </div>
-    </section>
-
-    <section class="shop">
-      <div class="wrap">
+        <div class="shop-intro">
+          <div class="eyebrow">Our Products</div>
+          <h2>Quality Materials, Built to Last</h2>
+          <p>Explore our range of construction and interior materials for your next project.</p>
+        </div>
         <div class="filters">
           <div class="product-count">Showing 1-11 of 11 products</div>
           <div class="field">Search products... <i data-lucide="search"></i></div>
@@ -3090,17 +3103,17 @@
             </div>
           </aside>
           <div class="catalog">
-            <article class="product" data-category="insulation"><div class="product-img"><img src="rockwool.png" alt="Rockwool" /></div><div class="product-body"><h3>Rockwool</h3><p>Fire and sound insulation.</p><span class="price">MYR 98.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="doors"><div class="product-img"><img src="aluminiumglassdoor.png" alt="Aluminium glass door" /></div><div class="product-body"><h3>Aluminium Glass Door</h3><p>High quality aluminium system.</p><span class="price">MYR 480.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="stopping"><div class="product-img"><img src="flexistopping.png" alt="Flexi and S88 stopping" /></div><div class="product-body"><h3>Flexi & S88 Stopping</h3><p>High quality stopping material for smooth finishing.</p><span class="price">MYR 110.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="gypsum"><div class="product-img"><img src="gypsumboard.png" alt="Gypsum board" /></div><div class="product-body"><h3>Gypsum Board</h3><p>Available sizes: 4x8 and 4x6. Thickness: 9mm.</p><span class="price">MYR 21.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="accessories"><div class="product-img"><img src="asgjointtape.png" alt="ASG joint tape" /></div><div class="product-body"><h3>ASG Joint Tape</h3><p>High quality joint tape for smooth and strong seams.</p><span class="price">MYR 6.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="doors"><div class="product-img"><img src="plywooddoor.png" alt="Plywood door" /></div><div class="product-body"><h3>Plywood Door</h3><p>Available with glass and without glass options.</p><span class="price">MYR 65.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="accessories"><div class="product-img"><img src="asgscrew.png" alt="ASG dry wall screw" /></div><div class="product-body"><h3>ASG Dry Wall Screw</h3><p>Durable screw for drywall and ceiling installation.</p><span class="price">MYR 12.50</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="metal"><div class="product-img"><img src="metalstud.png" alt="Metal stud" /></div><div class="product-body"><h3>Metal Stud</h3><p>Metal stud framing.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="metal"><div class="product-img"><img src="besisiling.png" alt="Besi siling" /></div><div class="product-body"><h3>Besi Siling</h3><p>Ceiling metal framing material for installation works.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="accessories"><div class="product-img"><img src="getahpintu.png" alt="Getah pintu" /></div><div class="product-body"><h3>Getah Pintu</h3><p>Can be used for door and glass applications.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="doors"><div class="product-img"><img src="doorjamb.png" alt="Aluminium door jamb" /></div><div class="product-body"><h3>Aluminium Door Jamb</h3><p>Durable aluminium jamb for door installation.</p><span class="price">MYR 3.00</span><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="insulation"><div class="product-img"><img src="rockwool.png" alt="Rockwool" /></div><div class="product-body"><h3>Rockwool</h3><p>Fire and sound insulation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="doors"><div class="product-img"><img src="aluminiumglassdoor.png" alt="Aluminium glass door" /></div><div class="product-body"><h3>Aluminium Glass Door</h3><p>High quality aluminium system.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="stopping"><div class="product-img"><img src="flexistopping.png" alt="Flexi and S88 stopping" /></div><div class="product-body"><h3>Flexi & S88 Stopping</h3><p>High quality stopping material for smooth finishing.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="gypsum"><div class="product-img"><img src="gypsumboard.png" alt="Gypsum board" /></div><div class="product-body"><h3>Gypsum Board</h3><p>Available sizes: 4x8 and 4x6. Thickness: 9mm.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="asgjointtape.png" alt="ASG joint tape" /></div><div class="product-body"><h3>ASG Joint Tape</h3><p>High quality joint tape for smooth and strong seams.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="doors"><div class="product-img"><img src="plywooddoor.png" alt="Plywood door" /></div><div class="product-body"><h3>Plywood Door</h3><p>Available with glass and without glass options.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="asgscrew.png" alt="ASG dry wall screw" /></div><div class="product-body"><h3>ASG Dry Wall Screw</h3><p>Durable screw for drywall and ceiling installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="metal"><div class="product-img"><img src="metalstud.png" alt="Metal stud" /></div><div class="product-body"><h3>Metal Stud</h3><p>Metal stud framing.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="metal"><div class="product-img"><img src="besisiling.png" alt="Besi siling" /></div><div class="product-body"><h3>Besi Siling</h3><p>Ceiling metal framing material for installation works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="getahpintu.png" alt="Getah pintu" /></div><div class="product-body"><h3>Getah Pintu</h3><p>Can be used for door and glass applications.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="doors"><div class="product-img"><img src="doorjamb.png" alt="Aluminium door jamb" /></div><div class="product-body"><h3>Aluminium Door Jamb</h3><p>Durable aluminium jamb for door installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
           </div>
         </div>
         <div class="bulk-cta">
@@ -3206,6 +3219,66 @@
       </div>
     </section>
 
+    <section class="branches" id="branches">
+      <div class="wrap">
+        <div class="branch-head">
+          <div class="eyebrow">Our Branches</div>
+          <h2>Serving You From Multiple Locations</h2>
+          <p>Visit or contact the nearest ABE branch for ceiling, partition, renovation, and project quotation support.</p>
+        </div>
+        <div class="branch-grid">
+          <article class="branch-card">
+            <div class="branch-image">
+              <img src="kapar.png" alt="ABE Kapar branch" />
+              <div class="branch-badge"><i data-lucide="map-pin"></i>Kapar Branch</div>
+            </div>
+            <div class="branch-body">
+              <h3>Kapar Branch</h3>
+              <p>Main branch supporting customers around Kapar, Klang, Shah Alam, and nearby Selangor areas.</p>
+              <div class="branch-meta">
+                <div class="branch-meta-item">
+                  <div class="iconbox"><i data-lucide="map-pin"></i></div>
+                  <div><strong>Location</strong>PT46046D, Jalan Bukit Cerakah, Bukit Kapar, 42200 Kapar, Selangor.</div>
+                </div>
+                <div class="branch-meta-item">
+                  <div class="iconbox"><i data-lucide="phone"></i></div>
+                  <div><strong>Contact</strong>+6013 300 8130</div>
+                </div>
+              </div>
+              <div class="branch-actions">
+                <a class="btn btn-red" href="https://www.google.com/maps/search/?api=1&query=PT46046D%2C%20JALAN%20BUKIT%20CERAKAH%2C%20BUKIT%20KAPAR%2C%2042200%20KAPAR%2C%20Selangor%2C%20Malaysia" target="_blank" rel="noopener">Get Directions</a>
+                <a class="btn btn-dark" href="https://wa.me/60133008130?text=Hi%20ABE%2C%20I%20would%20like%20to%20contact%20your%20Kapar%20branch.">WhatsApp Branch</a>
+              </div>
+            </div>
+          </article>
+          <article class="branch-card">
+            <div class="branch-image">
+              <img src="melaka.png" alt="ABE Melaka branch" />
+              <div class="branch-badge"><i data-lucide="map-pin"></i>Melaka Branch</div>
+            </div>
+            <div class="branch-body">
+              <h3>Melaka Branch</h3>
+              <p>Southern branch support for Melaka customers needing plaster ceiling, gypsum partition, and renovation services.</p>
+              <div class="branch-meta">
+                <div class="branch-meta-item">
+                  <div class="iconbox"><i data-lucide="map-pin"></i></div>
+                  <div><strong>Location</strong>No 11, Jalan TU65, Kawasan Perindustrian Taman Tasik Utama, Melaka, Ayer Keroh, Malaysia, 75450.</div>
+                </div>
+                <div class="branch-meta-item">
+                  <div class="iconbox"><i data-lucide="phone"></i></div>
+                  <div><strong>Contact</strong>+6013 300 8130</div>
+                </div>
+              </div>
+              <div class="branch-actions">
+                <a class="btn btn-red" href="https://www.google.com/maps/search/?api=1&query=No%2011%2C%20Jalan%20TU65%2C%20Kawasan%20Perindustrian%20Taman%20Tasik%20Utama%2C%20Melaka%2C%20Ayer%20Keroh%2C%20Malaysia%2C%2075450" target="_blank" rel="noopener">Get Directions</a>
+                <a class="btn btn-dark" href="https://wa.me/60133008130?text=Hi%20ABE%2C%20I%20would%20like%20to%20contact%20your%20Melaka%20branch.">WhatsApp Branch</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="contact" id="contact">
       <div class="wrap">
         <div class="contact-layout">
@@ -3216,7 +3289,8 @@
             <div class="contact-list">
               <div class="contact-item"><div class="iconbox" data-lucide="phone"></div><div><strong>Phone / WhatsApp</strong>+6013 300 8130</div></div>
               <div class="contact-item"><div class="iconbox" data-lucide="mail"></div><div><strong>Email</strong>info@abe.com.my</div></div>
-              <div class="contact-item"><div class="iconbox" data-lucide="map-pin"></div><div><strong>Office Address</strong>PT46046D, JALAN BUKIT CERAKAH, BUKIT KAPAR, 42200 KAPAR, Selangor.</div></div>
+              <div class="contact-item"><div class="iconbox" data-lucide="map-pin"></div><div><strong>Kapar Branch Address</strong>PT46046D, JALAN BUKIT CERAKAH, BUKIT KAPAR, 42200 KAPAR, Selangor.</div></div>
+              <div class="contact-item"><div class="iconbox" data-lucide="map-pin"></div><div><strong>Melaka Branch Address</strong>No 11, Jalan TU65, Kawasan Perindustrian Taman Tasik Utama, Melaka, Ayer Keroh, Malaysia, 75450.</div></div>
               <div class="contact-item"><div class="iconbox" data-lucide="clock"></div><div><strong>Business Hours</strong>Monday - Saturday<br />8:30 AM - 6:00 PM</div></div>
             </div>
           </div>
@@ -3228,33 +3302,6 @@
             <textarea placeholder="Your Message"></textarea>
             <button class="btn btn-red" type="submit">Send Message</button>
           </form>
-        </div>
-      </div>
-      <div class="map">
-        <div class="map-visual">
-          <div class="map-tiles" aria-hidden="true">
-            <img src="https://tile.openstreetmap.org/14/12812/8039.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12813/8039.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12814/8039.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12815/8039.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12816/8039.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12817/8039.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12812/8040.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12813/8040.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12814/8040.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12815/8040.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12816/8040.png" alt="" />
-            <img src="https://tile.openstreetmap.org/14/12817/8040.png" alt="" />
-          </div>
-          <div class="pin"></div>
-        </div>
-        <div class="map-card">
-          <div class="map-card-icon"><i data-lucide="map-pin"></i></div>
-          <div>
-            <strong>ABE Plaster Ceiling & Gypsum Partition</strong>
-            <p>PT46046D, JALAN BUKIT CERAKAH, BUKIT KAPAR,<br />42200 KAPAR, Selangor, Malaysia.</p>
-          </div>
-          <a class="map-directions" href="https://www.google.com/maps/search/?api=1&query=PT46046D%2C%20JALAN%20BUKIT%20CERAKAH%2C%20BUKIT%20KAPAR%2C%2042200%20KAPAR%2C%20Selangor%2C%20Malaysia" target="_blank" rel="noopener">Get Directions</a>
         </div>
       </div>
     </section>
@@ -3313,7 +3360,7 @@
     window.navScriptStarted = true;
 
     var navMenuLinks = document.querySelectorAll('.links a, .mobile-links a');
-    var navSectionIds = ['home', 'products', 'about', 'services', 'shop', 'projects', 'contact'];
+    var navSectionIds = ['home', 'products', 'about', 'services', 'shop', 'projects', 'branches', 'contact'];
 
     function setActiveNav(id) {
       for (var i = 0; i < navMenuLinks.length; i += 1) {
@@ -3488,3 +3535,4 @@
   </script>
 </body>
 </html>
+
