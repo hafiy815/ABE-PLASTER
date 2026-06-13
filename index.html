@@ -2079,66 +2079,99 @@
 
     .project-cta {
       background: #fbf8f3;
-      padding: 0 0 34px;
+      padding: 38px 0 54px;
     }
 
     .project-cta .wrap {
-      min-height: 76px;
-      padding: 0 48px;
+      position: relative;
+      min-height: 118px;
+      padding: 30px 48px 30px 42px;
       background: #fff;
       color: var(--text);
       border: 1px solid #ece5db;
-      border-radius: 4px;
+      border-radius: 8px;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 28px;
-      box-shadow: 0 14px 34px rgba(20, 24, 32, .07);
+      gap: 30px;
+      overflow: hidden;
+      box-shadow: 0 22px 54px rgba(20, 24, 32, .09);
+    }
+
+    .project-cta .wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: var(--red);
+    }
+
+    .project-cta .wrap::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -130px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, .08);
+      pointer-events: none;
     }
 
     .project-cta-icon {
-      width: 44px;
-      height: 44px;
+      position: relative;
+      z-index: 1;
+      width: 62px;
+      height: 62px;
       border: 1px solid #ffd0d4;
+      border-radius: 6px;
+      background: #fff6f7;
       display: grid;
       place-items: center;
       color: var(--red);
     }
 
     .project-cta-icon svg {
-      width: 25px;
-      height: 25px;
+      width: 32px;
+      height: 32px;
       stroke-width: 1.7;
     }
 
     .project-cta h2 {
-      margin: 0 0 4px;
-      font-size: 21px;
+      position: relative;
+      z-index: 1;
+      margin: 0 0 6px;
+      font-size: clamp(24px, 2vw, 32px);
       line-height: 1.15;
       text-transform: uppercase;
       color: var(--text);
     }
 
     .project-cta p {
+      position: relative;
+      z-index: 1;
       color: #6b7280;
-      font-size: 12px;
-      line-height: 1.35;
+      font-size: 14px;
+      line-height: 1.55;
       margin: 0;
     }
 
     .project-cta-actions {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
     .project-cta .btn {
-      min-height: 44px;
-      min-width: 190px;
+      min-height: 52px;
+      min-width: 220px;
       border-color: var(--red);
       background: var(--red);
       color: #fff;
-      font-size: 11px;
+      font-size: 12px;
+      box-shadow: 0 14px 26px rgba(229, 9, 20, .18);
     }
 
     .project-cta .btn::after {
@@ -2147,11 +2180,12 @@
     }
 
     .project-cta .whatsapp {
-      width: 44px;
-      height: 44px;
-      border-color: rgba(0,0,0,.18);
+      width: 52px;
+      height: 52px;
+      border-color: #e4ded3;
       background: #fff;
       color: #25d366;
+      border-radius: 4px;
     }
 
     .contact {
@@ -2836,23 +2870,23 @@
       }
 
       .project-cta {
-        padding: 0 0 28px;
+        padding: 28px 0 40px;
       }
 
       .project-cta .wrap {
         width: calc(100% - 32px);
         min-height: 0;
-        padding: 26px 22px;
+        padding: 30px 22px 26px;
         grid-template-columns: 1fr;
-        gap: 17px;
+        gap: 18px;
         text-align: center;
-        border-radius: 6px;
+        border-radius: 8px;
         background: #fff;
       }
 
       .project-cta-icon {
-        width: 52px;
-        height: 52px;
+        width: 58px;
+        height: 58px;
         margin: 0 auto;
         border-color: #ffd0d4;
       }
@@ -2863,14 +2897,14 @@
       }
 
       .project-cta h2 {
-        max-width: 260px;
+        max-width: 300px;
         margin: 0 auto 8px;
-        font-size: 27px;
+        font-size: 26px;
         line-height: 1.08;
       }
 
       .project-cta p {
-        max-width: 250px;
+        max-width: 285px;
         margin: 0 auto;
         font-size: 14px;
         line-height: 1.45;
