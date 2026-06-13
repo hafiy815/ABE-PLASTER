@@ -2156,13 +2156,13 @@
 
     .contact {
       background: #fbf8f3;
-      padding-bottom: 0;
+      padding-bottom: 96px;
     }
 
     .contact-layout {
       display: grid;
       grid-template-columns: .8fr 1.2fr;
-      gap: 36px;
+      gap: 52px;
     }
 
     .contact-list {
@@ -2188,7 +2188,8 @@
     .contact-form {
       background: #fff;
       border: 1px solid var(--line);
-      padding: 24px;
+      padding: 32px;
+      box-shadow: 0 18px 44px rgba(20, 24, 32, .06);
     }
 
     input,
@@ -2216,15 +2217,15 @@
     footer {
       background: #ffffff;
       color: var(--text);
-      padding: 54px 0 28px;
+      padding: 82px 0 34px;
       border-top: 1px solid #ece7de;
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: 1.35fr repeat(4, 1fr);
-      gap: 44px;
-      padding-bottom: 36px;
+      gap: 58px;
+      padding-bottom: 46px;
       border-bottom: 1px solid #ece7de;
     }
 
@@ -2344,6 +2345,7 @@
 
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 38px;
       }
     }
 
@@ -2622,6 +2624,22 @@
 
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact {
+        padding-bottom: 64px;
+      }
+
+      .contact-layout {
+        gap: 34px;
+      }
+
+      .contact-form {
+        padding: 24px;
+      }
+
+      footer {
+        padding-top: 58px;
       }
 
       .section-head,
