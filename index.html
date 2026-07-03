@@ -259,6 +259,10 @@
       overflow: hidden;
     }
 
+    body.gallery-open {
+      overflow: hidden;
+    }
+
     body.drawer-open .mobile-overlay {
       opacity: 1;
       pointer-events: auto;
@@ -1913,6 +1917,195 @@
       font-size: 12px;
     }
 
+    .project-gallery {
+      cursor: pointer;
+    }
+
+    .project-view {
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      top: 50%;
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      color: var(--red);
+      background: rgba(255,255,255,.95);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 50%;
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+      transform: translate(-50%, -50%) scale(.9);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease, background .2s ease;
+    }
+
+    .project-view svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 2.4;
+    }
+
+    .project-gallery:hover .project-view,
+    .project-gallery:focus-within .project-view {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .project-gallery:hover::after {
+      background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.88));
+    }
+
+    .project-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .22s ease, visibility .22s ease;
+    }
+
+    .project-lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .project-lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.74);
+      backdrop-filter: blur(5px);
+    }
+
+    .project-lightbox-dialog {
+      position: relative;
+      width: min(980px, calc(100vw - 40px));
+      max-height: calc(100vh - 48px);
+      overflow: auto;
+      background: #fff;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 32px 80px rgba(0,0,0,.35);
+    }
+
+    .project-lightbox-close {
+      position: absolute;
+      z-index: 3;
+      top: 22px;
+      right: 22px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: rgba(0,0,0,.68);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .project-lightbox-main {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+      overflow: hidden;
+      background: #080808;
+      border-radius: 6px;
+    }
+
+    .project-lightbox-main img {
+      width: 100%;
+      height: min(68vh, 650px);
+      object-fit: contain;
+      background: #080808;
+    }
+
+    .project-lightbox-nav {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: rgba(0,0,0,.62);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      font-size: 30px;
+      line-height: 1;
+      transform: translateY(-50%);
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .project-lightbox-nav:hover {
+      background: var(--red);
+      transform: translateY(-50%) scale(1.04);
+    }
+
+    .project-lightbox-nav[data-gallery-prev] {
+      left: 16px;
+    }
+
+    .project-lightbox-nav[data-gallery-next] {
+      right: 16px;
+    }
+
+    .project-lightbox-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 2px 0;
+      color: var(--black);
+      font-weight: 900;
+    }
+
+    .project-lightbox-info span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .project-lightbox-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .project-lightbox-thumbs button {
+      height: 86px;
+      overflow: hidden;
+      padding: 0;
+      background: #fff;
+      border: 2px solid transparent;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .project-lightbox-thumbs button.active {
+      border-color: var(--red);
+    }
+
+    .project-lightbox-thumbs img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .process {
       background: #fff;
       padding: 62px 0 66px;
@@ -2541,6 +2734,51 @@
       .hero-stat span {
         font-size: 12px;
         line-height: 1.35;
+      }
+
+      .project-lightbox {
+        padding: 12px;
+      }
+
+      .project-lightbox-dialog {
+        width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+        padding: 10px;
+        border-radius: 6px;
+      }
+
+      .project-lightbox-main {
+        min-height: 260px;
+      }
+
+      .project-lightbox-main img {
+        height: min(62vh, 460px);
+      }
+
+      .project-lightbox-nav {
+        width: 38px;
+        height: 38px;
+        font-size: 26px;
+      }
+
+      .project-lightbox-nav[data-gallery-prev] {
+        left: 10px;
+      }
+
+      .project-lightbox-nav[data-gallery-next] {
+        right: 10px;
+      }
+
+      .project-lightbox-close {
+        top: 14px;
+        right: 14px;
+        width: 38px;
+        height: 38px;
+        font-size: 24px;
+      }
+
+      .project-lightbox-thumbs button {
+        height: 68px;
       }
 
       .home-services {
@@ -3207,7 +3445,7 @@
           <article class="project"><img src="clinicrenovation.png" alt="Clinic renovation" /><div class="project-title"><strong>Clinic Renovation</strong><span>Kuala Lumpur</span></div></article>
           <article class="project"><img src="officepartition.png" alt="Modern office partition" /><div class="project-title"><strong>Modern Office Partition</strong><span>Petaling Jaya</span></div></article>
           <article class="project"><img src="tadikarenovation.png" alt="Tadika renovation gypsum" /><div class="project-title"><strong>Tadika Renovation (GYPSUM)</strong><span>Shah Alam</span></div></article>
-          <article class="project"><img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=900&q=80" alt="Sultan lobby ceiling" /><div class="project-title"><strong>Sultan Lobby Ceiling</strong><span>Kuala Lumpur</span></div></article>
+          <article class="project project-gallery" data-gallery="PG1.jpeg|PG2.jpeg|PG3.jpeg" data-title="Partition Glass"><img src="PG1.jpeg" alt="Partition glass project" /><button class="project-view" type="button" aria-label="View Partition Glass project images"><i data-lucide="eye"></i></button><div class="project-title"><strong>Partition Glass</strong><span>Glass Partition</span></div></article>
           <article class="project"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Meeting room partition" /><div class="project-title"><strong>Meeting Room Partition</strong><span>Cyberjaya</span></div></article>
           <article class="project"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80" alt="Retail shop ceiling" /><div class="project-title"><strong>Retail Shop Ceiling</strong><span>Subang Jaya</span></div></article>
         </div>
@@ -3404,6 +3642,23 @@
     </a>
   </div>
 
+  <div class="project-lightbox" id="projectLightbox" aria-hidden="true">
+    <div class="project-lightbox-backdrop" data-gallery-close></div>
+    <div class="project-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Project image gallery">
+      <button class="project-lightbox-close" type="button" aria-label="Close project gallery" data-gallery-close>&times;</button>
+      <div class="project-lightbox-main">
+        <button class="project-lightbox-nav" type="button" data-gallery-prev aria-label="Previous image">&lsaquo;</button>
+        <img id="projectLightboxImage" src="" alt="" />
+        <button class="project-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&rsaquo;</button>
+      </div>
+      <div class="project-lightbox-info">
+        <strong id="projectLightboxTitle">Project Gallery</strong>
+        <span id="projectLightboxCount">1 / 3</span>
+      </div>
+      <div class="project-lightbox-thumbs" id="projectLightboxThumbs"></div>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     try {
@@ -3587,6 +3842,144 @@
         this.classList.add('added');
         updateInquiryFloat();
       };
+    }
+
+    var galleryCards = document.querySelectorAll('.project-gallery');
+    var projectLightbox = document.getElementById('projectLightbox');
+    var projectLightboxImage = document.getElementById('projectLightboxImage');
+    var projectLightboxTitle = document.getElementById('projectLightboxTitle');
+    var projectLightboxCount = document.getElementById('projectLightboxCount');
+    var projectLightboxThumbs = document.getElementById('projectLightboxThumbs');
+    var projectGalleryImages = [];
+    var projectGalleryIndex = 0;
+
+    function setProjectGalleryImage(index) {
+      if (!projectGalleryImages.length || !projectLightboxImage) {
+        return;
+      }
+
+      projectGalleryIndex = (index + projectGalleryImages.length) % projectGalleryImages.length;
+      projectLightboxImage.setAttribute('src', projectGalleryImages[projectGalleryIndex]);
+      projectLightboxImage.setAttribute('alt', (projectLightboxTitle ? projectLightboxTitle.innerHTML : 'Project') + ' image ' + (projectGalleryIndex + 1));
+
+      if (projectLightboxCount) {
+        projectLightboxCount.innerHTML = (projectGalleryIndex + 1) + ' / ' + projectGalleryImages.length;
+      }
+
+      if (projectLightboxThumbs) {
+        var thumbButtons = projectLightboxThumbs.querySelectorAll('button');
+        for (var thumbIndex = 0; thumbIndex < thumbButtons.length; thumbIndex += 1) {
+          if (thumbIndex === projectGalleryIndex) {
+            thumbButtons[thumbIndex].classList.add('active');
+          } else {
+            thumbButtons[thumbIndex].classList.remove('active');
+          }
+        }
+      }
+    }
+
+    function buildProjectGalleryThumbs() {
+      if (!projectLightboxThumbs) {
+        return;
+      }
+
+      projectLightboxThumbs.innerHTML = '';
+
+      for (var galleryImageIndex = 0; galleryImageIndex < projectGalleryImages.length; galleryImageIndex += 1) {
+        var thumbButton = document.createElement('button');
+        var thumbImage = document.createElement('img');
+
+        thumbButton.setAttribute('type', 'button');
+        thumbButton.setAttribute('aria-label', 'View image ' + (galleryImageIndex + 1));
+        thumbButton.setAttribute('data-gallery-index', galleryImageIndex);
+        thumbImage.setAttribute('src', projectGalleryImages[galleryImageIndex]);
+        thumbImage.setAttribute('alt', '');
+        thumbButton.appendChild(thumbImage);
+        thumbButton.onclick = function() {
+          setProjectGalleryImage(parseInt(this.getAttribute('data-gallery-index'), 10));
+        };
+        projectLightboxThumbs.appendChild(thumbButton);
+      }
+    }
+
+    function openProjectGallery(card) {
+      if (!projectLightbox || !card) {
+        return;
+      }
+
+      projectGalleryImages = (card.getAttribute('data-gallery') || '').split('|').filter(function(imagePath) {
+        return imagePath.trim().length > 0;
+      });
+
+      if (!projectGalleryImages.length) {
+        return;
+      }
+
+      if (projectLightboxTitle) {
+        projectLightboxTitle.innerHTML = card.getAttribute('data-title') || 'Project Gallery';
+      }
+
+      buildProjectGalleryThumbs();
+      setProjectGalleryImage(0);
+      projectLightbox.classList.add('open');
+      projectLightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('gallery-open');
+    }
+
+    function closeProjectGallery() {
+      if (!projectLightbox) {
+        return;
+      }
+
+      projectLightbox.classList.remove('open');
+      projectLightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gallery-open');
+    }
+
+    if (projectLightbox) {
+      var galleryCloseItems = projectLightbox.querySelectorAll('[data-gallery-close]');
+      var galleryPrev = projectLightbox.querySelector('[data-gallery-prev]');
+      var galleryNext = projectLightbox.querySelector('[data-gallery-next]');
+
+      for (var galleryCardIndex = 0; galleryCardIndex < galleryCards.length; galleryCardIndex += 1) {
+        galleryCards[galleryCardIndex].onclick = function() {
+          openProjectGallery(this);
+        };
+      }
+
+      for (var galleryCloseIndex = 0; galleryCloseIndex < galleryCloseItems.length; galleryCloseIndex += 1) {
+        galleryCloseItems[galleryCloseIndex].onclick = closeProjectGallery;
+      }
+
+      if (galleryPrev) {
+        galleryPrev.onclick = function() {
+          setProjectGalleryImage(projectGalleryIndex - 1);
+        };
+      }
+
+      if (galleryNext) {
+        galleryNext.onclick = function() {
+          setProjectGalleryImage(projectGalleryIndex + 1);
+        };
+      }
+
+      document.addEventListener('keydown', function(event) {
+        if (!projectLightbox.classList.contains('open')) {
+          return;
+        }
+
+        if (event.key === 'Escape' || event.keyCode === 27) {
+          closeProjectGallery();
+        }
+
+        if (event.key === 'ArrowLeft' || event.keyCode === 37) {
+          setProjectGalleryImage(projectGalleryIndex - 1);
+        }
+
+        if (event.key === 'ArrowRight' || event.keyCode === 39) {
+          setProjectGalleryImage(projectGalleryIndex + 1);
+        }
+      });
     }
   </script>
 </body>
