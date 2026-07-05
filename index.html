@@ -263,6 +263,59 @@
       overflow: hidden;
     }
 
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      filter: blur(6px);
+      transition:
+        opacity .75s cubic-bezier(.22, 1, .36, 1),
+        transform .75s cubic-bezier(.22, 1, .36, 1),
+        filter .75s cubic-bezier(.22, 1, .36, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform, filter;
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .reveal-left {
+      transform: translateX(-28px);
+    }
+
+    .reveal-right {
+      transform: translateX(28px);
+    }
+
+    .reveal-scale {
+      transform: translateY(18px) scale(.97);
+    }
+
+    .reveal-left.revealed,
+    .reveal-right.revealed,
+    .reveal-scale.revealed {
+      transform: translateX(0) translateY(0) scale(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
+
     body.drawer-open .mobile-overlay {
       opacity: 1;
       pointer-events: auto;
@@ -286,7 +339,7 @@
       font-weight: 800;
       text-transform: uppercase;
       cursor: pointer;
-      transition: .2s ease;
+      transition: transform .22s ease, background .22s ease, border-color .22s ease, color .22s ease, box-shadow .22s ease;
     }
 
     .btn-red {
@@ -297,6 +350,8 @@
 
     .btn-red:hover {
       background: var(--red-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(229, 9, 20, .24);
     }
 
     .btn-dark {
@@ -757,6 +812,65 @@
       font-size: 13px;
       line-height: 1.55;
       margin-bottom: 0;
+    }
+
+    .service-mini,
+    .service-card,
+    .product,
+    .project,
+    .branch-card,
+    .contact-item,
+    .contact-form,
+    .project-cta .wrap,
+    .hero-stats-grid {
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+
+    .service-mini:hover,
+    .service-card:hover,
+    .product:hover,
+    .branch-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(229, 9, 20, .18);
+      box-shadow: 0 24px 55px rgba(16, 20, 28, .10);
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 45px rgba(16, 20, 28, .18);
+    }
+
+    .service-card img,
+    .product-img img,
+    .project img,
+    .branch-media img,
+    .about-photo img,
+    .process-photo img,
+    .hero-image img {
+      transition: transform .55s cubic-bezier(.22, 1, .36, 1), filter .55s ease;
+    }
+
+    .service-card:hover img,
+    .product:hover .product-img img,
+    .project:hover img,
+    .branch-card:hover .branch-media img {
+      transform: scale(1.045);
+      filter: saturate(1.04) contrast(1.03);
+    }
+
+    .iconbox,
+    .process-icon,
+    .check-icon,
+    .bulk-icon,
+    .project-cta-icon {
+      transition: transform .28s ease, background .28s ease, color .28s ease, border-color .28s ease;
+    }
+
+    .service-mini:hover .iconbox,
+    .service-card:hover .iconbox,
+    .process-step:hover .process-icon,
+    .contact-item:hover .iconbox {
+      transform: translateY(-2px) scale(1.06);
     }
 
     .home-services .service-mini h3 {
@@ -3674,6 +3788,64 @@
 
     var navMenuLinks = document.querySelectorAll('.links a, .mobile-links a');
     var navSectionIds = ['home', 'products', 'about', 'services', 'shop', 'projects', 'branches', 'contact'];
+
+    function setupScrollReveal() {
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealGroups = [
+        { selector: '.hero-copy', effect: 'reveal-left' },
+        { selector: '.hero-image', effect: 'reveal-right' },
+        { selector: '.hero-stat', effect: 'reveal-scale', stagger: 90 },
+        { selector: '.section-head, .services-intro, .process-copy, .contact-layout > div', effect: 'reveal' },
+        { selector: '.about-text, .about-photo, .process-photo, .contact-form', effect: 'reveal-scale' },
+        { selector: '.check, .service-card, .service-benefit, .category-panel, .product, .project, .branch-card, .process-step, .contact-item, .project-cta .wrap, footer .footer-grid > div', effect: 'reveal', stagger: 70 }
+      ];
+      var revealElements = [];
+
+      for (var groupIndex = 0; groupIndex < revealGroups.length; groupIndex += 1) {
+        var group = revealGroups[groupIndex];
+        var nodes = document.querySelectorAll(group.selector);
+
+        for (var nodeIndex = 0; nodeIndex < nodes.length; nodeIndex += 1) {
+          var node = nodes[nodeIndex];
+          node.classList.add('reveal');
+
+          if (group.effect) {
+            node.classList.add(group.effect);
+          }
+
+          if (group.stagger) {
+            node.style.setProperty('--reveal-delay', Math.min(nodeIndex * group.stagger, 420) + 'ms');
+          }
+
+          revealElements.push(node);
+        }
+      }
+
+      if (reducedMotion || !('IntersectionObserver' in window)) {
+        for (var revealIndex = 0; revealIndex < revealElements.length; revealIndex += 1) {
+          revealElements[revealIndex].classList.add('revealed');
+        }
+        return;
+      }
+
+      var revealObserver = new IntersectionObserver(function(entries, observer) {
+        for (var entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
+          if (entries[entryIndex].isIntersecting) {
+            entries[entryIndex].target.classList.add('revealed');
+            observer.unobserve(entries[entryIndex].target);
+          }
+        }
+      }, {
+        threshold: 0.14,
+        rootMargin: '0px 0px -8% 0px'
+      });
+
+      for (var observeIndex = 0; observeIndex < revealElements.length; observeIndex += 1) {
+        revealObserver.observe(revealElements[observeIndex]);
+      }
+    }
+
+    setupScrollReveal();
 
     function setActiveNav(id) {
       for (var i = 0; i < navMenuLinks.length; i += 1) {
