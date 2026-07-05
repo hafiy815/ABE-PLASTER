@@ -3840,11 +3840,12 @@
         return;
       }
 
-      var revealObserver = new IntersectionObserver(function(entries, observer) {
+      var revealObserver = new IntersectionObserver(function(entries) {
         for (var entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
           if (entries[entryIndex].isIntersecting) {
             entries[entryIndex].target.classList.add('revealed');
-            observer.unobserve(entries[entryIndex].target);
+          } else {
+            entries[entryIndex].target.classList.remove('revealed');
           }
         }
       }, {
