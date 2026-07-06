@@ -2539,6 +2539,7 @@
     }
 
     input,
+    select,
     textarea {
       width: 100%;
       border: 1px solid var(--line);
@@ -2548,6 +2549,12 @@
       font: inherit;
       font-size: 13px;
       outline: none;
+    }
+
+    select {
+      color: #777;
+      background: #fff;
+      cursor: pointer;
     }
 
     textarea {
@@ -3506,7 +3513,7 @@
           <p>Explore our range of construction and interior materials for your next project.</p>
         </div>
         <div class="filters">
-          <div class="product-count">Showing 1-11 of 11 products</div>
+          <div class="product-count">Showing 1-12 of 12 products</div>
           <div class="field">Search products... <i data-lucide="search"></i></div>
         </div>
         <div class="shop-grid">
@@ -3514,13 +3521,13 @@
             <div class="filter-card">
               <h3>Categories</h3>
               <ul class="category-list">
-                <li><button class="category-filter active" type="button" data-category="all"><i data-lucide="boxes"></i><span>All Products</span><strong>11</strong></button></li>
+                <li><button class="category-filter active" type="button" data-category="all"><i data-lucide="boxes"></i><span>All Products</span><strong>12</strong></button></li>
                 <li><button class="category-filter" type="button" data-category="insulation"><i data-lucide="package"></i><span>Insulation</span><strong>1</strong></button></li>
                 <li><button class="category-filter" type="button" data-category="stopping"><i data-lucide="layers"></i><span>Stopping</span><strong>1</strong></button></li>
                 <li><button class="category-filter" type="button" data-category="doors"><i data-lucide="door-open"></i><span>Doors</span><strong>3</strong></button></li>
                 <li><button class="category-filter" type="button" data-category="gypsum"><i data-lucide="box"></i><span>Gypsum & Boards</span><strong>1</strong></button></li>
                 <li><button class="category-filter" type="button" data-category="accessories"><i data-lucide="wrench"></i><span>Accessories</span><strong>3</strong></button></li>
-                <li><button class="category-filter" type="button" data-category="metal"><i data-lucide="columns-3"></i><span>Metal Partition</span><strong>2</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="metal"><i data-lucide="columns-3"></i><span>Metal Partition</span><strong>3</strong></button></li>
               </ul>
             </div>
           </aside>
@@ -3534,6 +3541,7 @@
             <article class="product" data-category="accessories"><div class="product-img"><img src="asgscrew.png" alt="ASG dry wall screw" /></div><div class="product-body"><h3>ASG Dry Wall Screw</h3><p>Durable screw for drywall and ceiling installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
             <article class="product" data-category="metal"><div class="product-img"><img src="metalstud.png" alt="Metal stud" /></div><div class="product-body"><h3>Metal Stud</h3><p>Metal stud framing.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
             <article class="product" data-category="metal"><div class="product-img"><img src="besisiling.png" alt="Besi siling" /></div><div class="product-body"><h3>Besi Siling</h3><p>Ceiling metal framing material for installation works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="metal"><div class="product-img"><img src="furringchannel.jpeg" alt="Furring channel" /></div><div class="product-body"><h3>Furring Channel</h3><p>Metal ceiling support channel for partition and ceiling works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
             <article class="product" data-category="accessories"><div class="product-img"><img src="getahpintu.png" alt="Getah pintu" /></div><div class="product-body"><h3>Getah Pintu</h3><p>Can be used for door and glass applications.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
             <article class="product" data-category="doors"><div class="product-img"><img src="doorjamb.png" alt="Aluminium door jamb" /></div><div class="product-body"><h3>Aluminium Door Jamb</h3><p>Durable aluminium jamb for door installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
           </div>
@@ -3688,12 +3696,12 @@
                 </div>
                 <div class="branch-meta-item">
                   <div class="iconbox"><i data-lucide="phone"></i></div>
-                  <div><strong>Contact</strong>+6013 300 8130</div>
+                  <div><strong>Contact</strong>+6011 23440108</div>
                 </div>
               </div>
               <div class="branch-actions">
                 <a class="btn btn-red" href="https://www.google.com/maps/search/?api=1&query=No%2011%2C%20Jalan%20TU65%2C%20Kawasan%20Perindustrian%20Taman%20Tasik%20Utama%2C%20Melaka%2C%20Ayer%20Keroh%2C%20Malaysia%2C%2075450" target="_blank" rel="noopener">Get Directions</a>
-                <a class="btn btn-dark" href="https://wa.me/60133008130?text=Hi%20ABE%2C%20I%20would%20like%20to%20contact%20your%20Melaka%20branch.">WhatsApp Branch</a>
+                <a class="btn btn-dark" href="https://wa.me/601123440108?text=Hi%20ABE%2C%20I%20would%20like%20to%20contact%20your%20Melaka%20branch.">WhatsApp Branch</a>
               </div>
             </div>
           </article>
@@ -3716,12 +3724,15 @@
               <div class="contact-item"><div class="iconbox" data-lucide="clock"></div><div><strong>Business Hours</strong>Monday - Saturday<br />8:30 AM - 6:00 PM</div></div>
             </div>
           </div>
-          <form class="contact-form">
-            <input type="text" placeholder="Your Name" />
-            <input type="email" placeholder="Your Email" />
-            <input type="tel" placeholder="Your Phone" />
-            <input type="text" placeholder="Subject" />
-            <textarea placeholder="Your Message"></textarea>
+          <form class="contact-form" id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" />
+            <input type="email" name="email" placeholder="Your Email" />
+            <input type="tel" name="phone" placeholder="Your Phone" />
+            <select name="inquiryType" aria-label="Inquiry Type">
+              <option value="product">Product Inquiry</option>
+              <option value="project">Project Inquiry</option>
+            </select>
+            <textarea name="message" placeholder="Your Message"></textarea>
             <button class="btn btn-red" type="submit">Send Message</button>
           </form>
         </div>
@@ -3904,6 +3915,43 @@
     window.onscroll = updateActiveNav;
     window.onresize = updateActiveNav;
     updateActiveNav();
+
+    var contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+      contactForm.onsubmit = function(event) {
+        event.preventDefault();
+
+        var inquiryType = contactForm.elements.inquiryType ? contactForm.elements.inquiryType.value : 'product';
+        var inquiryLabel = inquiryType === 'project' ? 'Project Inquiry' : 'Product Inquiry';
+        var targetNumber = inquiryType === 'project' ? '60124558130' : '60133008130';
+        var name = contactForm.elements.name ? contactForm.elements.name.value.trim() : '';
+        var email = contactForm.elements.email ? contactForm.elements.email.value.trim() : '';
+        var phone = contactForm.elements.phone ? contactForm.elements.phone.value.trim() : '';
+        var messageBody = contactForm.elements.message ? contactForm.elements.message.value.trim() : '';
+        var whatsappMessage = 'Hi ABE, I would like to submit a ' + inquiryLabel + '.\n\n';
+
+        whatsappMessage += 'Inquiry Type: ' + inquiryLabel + '\n';
+
+        if (name) {
+          whatsappMessage += 'Name: ' + name + '\n';
+        }
+
+        if (email) {
+          whatsappMessage += 'Email: ' + email + '\n';
+        }
+
+        if (phone) {
+          whatsappMessage += 'Phone: ' + phone + '\n';
+        }
+
+        if (messageBody) {
+          whatsappMessage += 'Message: ' + messageBody + '\n';
+        }
+
+        window.open('https://wa.me/' + targetNumber + '?text=' + encodeURIComponent(whatsappMessage), '_blank');
+      };
+    }
 
     var hamburgerButton = document.querySelector('.hamburger');
     var drawerCloseItems = document.querySelectorAll('[data-drawer-close]');
