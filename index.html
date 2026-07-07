@@ -1629,8 +1629,56 @@
     }
 
     .shop .product-img {
+      position: relative;
       height: 196px;
       background: #eee;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .product-image-button {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      color: var(--red);
+      background: rgba(0,0,0,.08);
+      border: 0;
+      opacity: 0;
+      cursor: pointer;
+      transition: opacity .22s ease, background .22s ease;
+    }
+
+    .product-image-button span {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 50%;
+      box-shadow: 0 18px 44px rgba(0,0,0,.24);
+      transform: scale(.9);
+      transition: transform .22s ease;
+    }
+
+    .product-image-button svg {
+      width: 23px;
+      height: 23px;
+      stroke-width: 2.4;
+    }
+
+    .shop .product-img:hover .product-image-button,
+    .product-image-button:focus-visible {
+      opacity: 1;
+      background: rgba(0,0,0,.28);
+    }
+
+    .shop .product-img:hover .product-image-button span,
+    .product-image-button:focus-visible span {
+      transform: scale(1);
     }
 
     .shop .product-body {
@@ -3513,7 +3561,7 @@
           <p>Explore our range of construction and interior materials for your next project.</p>
         </div>
         <div class="filters">
-          <div class="product-count">Showing 1-12 of 12 products</div>
+          <div class="product-count">Showing 1-8 of 8 products</div>
           <div class="field">Search products... <i data-lucide="search"></i></div>
         </div>
         <div class="shop-grid">
@@ -3521,29 +3569,23 @@
             <div class="filter-card">
               <h3>Categories</h3>
               <ul class="category-list">
-                <li><button class="category-filter active" type="button" data-category="all"><i data-lucide="boxes"></i><span>All Products</span><strong>12</strong></button></li>
-                <li><button class="category-filter" type="button" data-category="insulation"><i data-lucide="package"></i><span>Insulation</span><strong>1</strong></button></li>
-                <li><button class="category-filter" type="button" data-category="stopping"><i data-lucide="layers"></i><span>Stopping</span><strong>1</strong></button></li>
-                <li><button class="category-filter" type="button" data-category="doors"><i data-lucide="door-open"></i><span>Doors</span><strong>3</strong></button></li>
+                <li><button class="category-filter active" type="button" data-category="all"><i data-lucide="boxes"></i><span>All Products</span><strong>8</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="ceiling"><i data-lucide="layers"></i><span>Ceiling Materials</span><strong>4</strong></button></li>
                 <li><button class="category-filter" type="button" data-category="gypsum"><i data-lucide="box"></i><span>Gypsum & Boards</span><strong>1</strong></button></li>
-                <li><button class="category-filter" type="button" data-category="accessories"><i data-lucide="wrench"></i><span>Accessories</span><strong>3</strong></button></li>
-                <li><button class="category-filter" type="button" data-category="metal"><i data-lucide="columns-3"></i><span>Metal Partition</span><strong>3</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="accessories"><i data-lucide="wrench"></i><span>Accessories</span><strong>2</strong></button></li>
+                <li><button class="category-filter" type="button" data-category="metal"><i data-lucide="columns-3"></i><span>Metal Partition</span><strong>1</strong></button></li>
               </ul>
             </div>
           </aside>
           <div class="catalog">
-            <article class="product" data-category="insulation"><div class="product-img"><img src="rockwool.png" alt="Rockwool" /></div><div class="product-body"><h3>Rockwool</h3><p>Fire and sound insulation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="doors"><div class="product-img"><img src="aluminiumglassdoor.png" alt="Aluminium glass door" /></div><div class="product-body"><h3>Aluminium Glass Door</h3><p>High quality aluminium system.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="stopping"><div class="product-img"><img src="flexistopping.png" alt="Flexi and S88 stopping" /></div><div class="product-body"><h3>Flexi & S88 Stopping</h3><p>High quality stopping material for smooth finishing.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="gypsum"><div class="product-img"><img src="gypsumboard.png" alt="Gypsum board" /></div><div class="product-body"><h3>Gypsum Board</h3><p>Available sizes: 4x8 and 4x6. Thickness: 9mm.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="accessories"><div class="product-img"><img src="asgjointtape.png" alt="ASG joint tape" /></div><div class="product-body"><h3>ASG Joint Tape</h3><p>High quality joint tape for smooth and strong seams.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="doors"><div class="product-img"><img src="plywooddoor.png" alt="Plywood door" /></div><div class="product-body"><h3>Plywood Door</h3><p>Available with glass and without glass options.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="accessories"><div class="product-img"><img src="asgscrew.png" alt="ASG dry wall screw" /></div><div class="product-body"><h3>ASG Dry Wall Screw</h3><p>Durable screw for drywall and ceiling installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="metal"><div class="product-img"><img src="metalstud.png" alt="Metal stud" /></div><div class="product-body"><h3>Metal Stud</h3><p>Metal stud framing.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="metal"><div class="product-img"><img src="besisiling.png" alt="Besi siling" /></div><div class="product-body"><h3>Besi Siling</h3><p>Ceiling metal framing material for installation works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="metal"><div class="product-img"><img src="furringchannel.jpeg" alt="Furring channel" /></div><div class="product-body"><h3>Furring Channel</h3><p>Metal ceiling support channel for partition and ceiling works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="accessories"><div class="product-img"><img src="getahpintu.png" alt="Getah pintu" /></div><div class="product-body"><h3>Getah Pintu</h3><p>Can be used for door and glass applications.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
-            <article class="product" data-category="doors"><div class="product-img"><img src="doorjamb.png" alt="Aluminium door jamb" /></div><div class="product-body"><h3>Aluminium Door Jamb</h3><p>Durable aluminium jamb for door installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="ceiling"><div class="product-img"><img src="furringchannel.jpeg" alt="Furring channel" /><button class="product-image-button" type="button" data-product-image="furringchannel.jpeg" data-product-title="Furring Channel" aria-label="View Furring Channel full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Furring Channel</h3><p>Metal ceiling support channel for partition and ceiling works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="ceiling"><div class="product-img"><img src="MANHOLE.jpeg" alt="Manhole" /><button class="product-image-button" type="button" data-product-image="MANHOLE.jpeg" data-product-title="Manhole" aria-label="View Manhole full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Manhole</h3><p>Ceiling access panel for clean and practical maintenance openings.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="ceiling"><div class="product-img"><img src="Bonding_Cornice.jpeg" alt="Bonding cornice" /><button class="product-image-button" type="button" data-product-image="Bonding_Cornice.jpeg" data-product-title="Bonding Cornice" aria-label="View Bonding Cornice full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Bonding Cornice</h3><p>Reliable bonding compound for cornice and ceiling finishing works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="ceiling"><div class="product-img"><img src="Ceiling_Board.jpeg" alt="Ceiling board" /><button class="product-image-button" type="button" data-product-image="Ceiling_Board.jpeg" data-product-title="Ceiling Board" aria-label="View Ceiling Board full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Ceiling Board</h3><p>Quality ceiling board for smooth, durable interior ceiling installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="Joint_Tape.jpeg" alt="Joint tape" /><button class="product-image-button" type="button" data-product-image="Joint_Tape.jpeg" data-product-title="Joint Tape" aria-label="View Joint Tape full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Joint Tape</h3><p>Joint reinforcement tape for neat seams and stronger drywall finishing.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="accessories"><div class="product-img"><img src="Drywall_Screw.jpeg" alt="Drywall screw" /><button class="product-image-button" type="button" data-product-image="Drywall_Screw.jpeg" data-product-title="Drywall Screw" aria-label="View Drywall Screw full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Drywall Screw</h3><p>Durable screws for drywall, gypsum board, and ceiling installation.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="metal"><div class="product-img"><img src="Metal_Stud.jpeg" alt="Metal stud" /><button class="product-image-button" type="button" data-product-image="Metal_Stud.jpeg" data-product-title="Metal Stud" aria-label="View Metal Stud full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Metal Stud</h3><p>Strong metal framing material for partition and ceiling structure works.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
+            <article class="product" data-category="gypsum"><div class="product-img"><img src="Gypsum_Board.jpeg" alt="Gypsum board" /><button class="product-image-button" type="button" data-product-image="Gypsum_Board.jpeg" data-product-title="Gypsum Board" aria-label="View Gypsum Board full image"><span><i data-lucide="eye"></i></span></button></div><div class="product-body"><h3>Gypsum Board</h3><p>Gypsum board for ceiling and partition installation with smooth finishing.</p><a class="btn btn-red" href="#contact">Add To Inquiry</a></div></article>
           </div>
         </div>
         <div class="bulk-cta">
@@ -4080,6 +4122,7 @@
     }
 
     var galleryCards = document.querySelectorAll('.project-gallery');
+    var productImageButtons = document.querySelectorAll('.product-image-button');
     var projectLightbox = document.getElementById('projectLightbox');
     var projectLightboxImage = document.getElementById('projectLightboxImage');
     var projectLightboxTitle = document.getElementById('projectLightboxTitle');
@@ -4161,6 +4204,30 @@
       document.body.classList.add('gallery-open');
     }
 
+    function openProductImage(button) {
+      if (!projectLightbox || !button) {
+        return;
+      }
+
+      var imagePath = button.getAttribute('data-product-image') || '';
+
+      if (!imagePath) {
+        return;
+      }
+
+      projectGalleryImages = [imagePath];
+
+      if (projectLightboxTitle) {
+        projectLightboxTitle.innerHTML = button.getAttribute('data-product-title') || 'Product Image';
+      }
+
+      buildProjectGalleryThumbs();
+      setProjectGalleryImage(0);
+      projectLightbox.classList.add('open');
+      projectLightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('gallery-open');
+    }
+
     function closeProjectGallery() {
       if (!projectLightbox) {
         return;
@@ -4179,6 +4246,14 @@
       for (var galleryCardIndex = 0; galleryCardIndex < galleryCards.length; galleryCardIndex += 1) {
         galleryCards[galleryCardIndex].onclick = function() {
           openProjectGallery(this);
+        };
+      }
+
+      for (var productImageIndex = 0; productImageIndex < productImageButtons.length; productImageIndex += 1) {
+        productImageButtons[productImageIndex].onclick = function(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          openProductImage(this);
         };
       }
 
