@@ -2886,12 +2886,25 @@
       }
 
       .hero-image {
-        display: none;
+        display: block;
+        width: calc(100% - 40px);
+        min-height: 230px;
+        height: 250px;
+        margin: 10px auto 0;
+        order: -1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 18px 42px rgba(16, 20, 28, .12);
+      }
+
+      .hero-image img {
+        height: 100%;
+        object-fit: cover;
       }
 
       .hero-copy {
         min-height: auto;
-        padding: 34px 28px 44px;
+        padding: 20px 28px 44px;
       }
 
       .hero .eyebrow {
@@ -3555,8 +3568,8 @@
             <a class="btn btn-dark" href="https://wa.me/60133008130"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2c-7.02 0-12.73 5.69-12.73 12.69 0 2.23.59 4.41 1.7 6.32L3.18 28.8l6.75-1.77a12.76 12.76 0 0 0 6.09 1.55c7.02 0 12.73-5.69 12.73-12.69S23.04 3.2 16.02 3.2Zm0 23.2c-1.92 0-3.79-.52-5.42-1.5l-.39-.23-4.01 1.05 1.07-3.9-.25-.4a10.42 10.42 0 0 1-1.59-5.53c0-5.82 4.75-10.55 10.59-10.55s10.59 4.73 10.59 10.55S21.86 26.4 16.02 26.4Zm5.8-7.89c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.63s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z" fill="currentColor"/></svg>WhatsApp Us</a>
           </div>
         </div>
-        <div class="hero-image" aria-label="SPA plaster ceiling project">
-          <img src="SPA1.jpeg" alt="SPA plaster ceiling project interior" />
+        <div class="hero-image" aria-label="Clinic reception plaster ceiling project">
+          <img src="home-reception.png" alt="Clinic reception with plaster ceiling and lighting installation" />
         </div>
       </div>
     </section>
@@ -3598,7 +3611,7 @@
             </div>
           </div>
           <div class="about-photo">
-            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=90" alt="Premium office partition interior" />
+            <img src="officepartition.png" alt="Modern office partition interior" />
           </div>
         </div>
       </div>
@@ -3894,8 +3907,11 @@
           </div>
           <form class="contact-form" id="contactForm">
             <input type="text" name="name" placeholder="Your Name" />
-            <input type="email" name="email" placeholder="Your Email" />
             <input type="tel" name="phone" placeholder="Your Phone" />
+            <select name="branch" aria-label="Branch">
+              <option value="kapar">Kapar Branch</option>
+              <option value="melaka">Melaka Branch</option>
+            </select>
             <select name="inquiryType" aria-label="Inquiry Type">
               <option value="product">Product Inquiry</option>
               <option value="project">Project Inquiry</option>
@@ -4092,21 +4108,23 @@
 
         var inquiryType = contactForm.elements.inquiryType ? contactForm.elements.inquiryType.value : 'product';
         var inquiryLabel = inquiryType === 'project' ? 'Project Inquiry' : 'Product Inquiry';
+        var branch = contactForm.elements.branch ? contactForm.elements.branch.value : 'kapar';
+        var branchLabel = branch === 'melaka' ? 'Melaka Branch' : 'Kapar Branch';
         var targetNumber = inquiryType === 'project' ? '60124558130' : '60133008130';
         var name = contactForm.elements.name ? contactForm.elements.name.value.trim() : '';
-        var email = contactForm.elements.email ? contactForm.elements.email.value.trim() : '';
         var phone = contactForm.elements.phone ? contactForm.elements.phone.value.trim() : '';
         var messageBody = contactForm.elements.message ? contactForm.elements.message.value.trim() : '';
         var whatsappMessage = 'Hi ABE, I would like to submit a ' + inquiryLabel + '.\n\n';
 
+        if (branch === 'melaka') {
+          targetNumber = '601123440108';
+        }
+
         whatsappMessage += 'Inquiry Type: ' + inquiryLabel + '\n';
+        whatsappMessage += 'Branch: ' + branchLabel + '\n';
 
         if (name) {
           whatsappMessage += 'Name: ' + name + '\n';
-        }
-
-        if (email) {
-          whatsappMessage += 'Email: ' + email + '\n';
         }
 
         if (phone) {
